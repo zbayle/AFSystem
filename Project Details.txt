@@ -1,0 +1,18 @@
+
+I would like to build a app that will allow a user to scan out products from inventory. These Items should be stored in a mongoDB Database. Each item has a name, barcode, price, location and when checked out add the user name and that it is checked out.
+The front of the app should be layed out like this. A button for each user (Displaying the Name) when clicked it loggs them in and is ready to scan out. Every barcode they scan should display what item they are taking out. When the same barcode is scanned it should add one to the ammount checked out. 
+There should be 3 types of users, Techs, Admin, dev.
+
+Lets start by setting up the MongoDB please.
+
+{db.products.insertOne({
+  "name": "Sample Product",
+  "barcode": "123456789",
+  "price": 10.99,
+  "location": "Aisle 1",
+  "checkedOut": false,
+  "checkedOutBy": "",
+  "checkoutCount": 0,
+  "count" : 100
+})
+}
