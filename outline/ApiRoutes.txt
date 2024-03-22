@@ -1,0 +1,23 @@
+Endpoints
+#USER ENDPOINTS#
+#Register User
+ /register
+
+#login
+/login
+
+#profile
+/profile
+
+#Admin
+/Admin
+
+#PRODUCT ENDPOINTS#
+#See all Products
+/products
+
+#Create New Product
+/Product/new/
+
+#Check out Product
+/Product/checkout/:username???
