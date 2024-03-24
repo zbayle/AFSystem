@@ -24,7 +24,7 @@ const getPerms = async (req, res) => {
 };
 
 const createPerm = (req, res) => {
-    // Logic to create a new perm
+    // Logic to create a new perm 
 };
 
 const updatePerm = (req, res) => {
