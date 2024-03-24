@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  background-color: #006fdd;
+}
+
+.navbar-logo {
+  height: 2em;
+}
+
+.navbar-username {
+  margin-right: 1em;
+}

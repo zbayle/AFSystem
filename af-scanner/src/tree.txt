@@ -1,0 +1,31 @@
+/my-app
+  README.md
+  node_modules/
+  package.json
+  public/
+    index.html
+    favicon.ico
+  src/
+    App/
+      components/       # Reusable components across the app
+      Button.js
+      List.js
+      ...
+    models/           # Data models
+      User.js
+      Product.js
+      ...
+    services/         # Services for API calls
+      apiService.js
+      userService.js
+      ...
+    utils/            # Utility functions
+      helper.js
+      ...
+    views/            # Components related to specific views or routes
+      Home.js
+      About.js
+    index.js
+    index.css
+  .babelrc
+  webpack.config.js
