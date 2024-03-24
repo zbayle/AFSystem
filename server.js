@@ -7,6 +7,7 @@ require('dotenv').config();
 // Import routes
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/productRoutes');
+const PermsRoutes = require('./routes/PermsRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -23,6 +24,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 // Mount routes
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/perms', PermsRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

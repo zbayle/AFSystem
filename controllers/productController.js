@@ -1,4 +1,4 @@
-const Product = require('../models/Product');
+const Product = require('../models/product.model');
 
 // Controller function to handle retrieving all products
 const getAllProducts = async (req, res) => {
@@ -12,18 +12,18 @@ const getAllProducts = async (req, res) => {
 };
 
 // Controller function to handle creating a new product
-const createProduct = async (req, res) => {
+const createProduct = async (req, res) => { 
   try {
     // Extract fields from request body
-    const { name, description, price } = req.body;
+    const { displayName, shortName, cost, unitsOnHand } = req.body;
 
     // Validate request body
-    if (!name || !description || !price) {
-      return res.status(400).json({ message: 'Name, description, and price are required' });
+    if (!displayName || !shortName || !cost || !unitsOnHand) {
+      return res.status(400).json({ message: 'displayName, shortName, cost, and unitsOnHand are required' });
     }
 
     // Create new product instance
-    const newProduct = new Product({ name, description, price });
+    const newProduct = new Product({ displayName, shortName, cost, unitsOnHand });
 
     // Save new product to database
     await newProduct.save();
@@ -39,14 +39,16 @@ const createProduct = async (req, res) => {
 // Controller function to handle updating a product
 const updateProduct = async (req, res) => {
   try {
-    // Extract product ID from request parameters
-    const { id } = req.params;
+    // Find product by id and update it
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.id,
+      req.body, // This contains the fields to be updated
+      { new: true } // This option returns the updated document
+    );
 
-    // Extract fields to update from request body
-    const { name, description, price } = req.body;
-
-    // Update product in the database
-    const updatedProduct = await Product.findByIdAndUpdate(id, { name, description, price }, { new: true });
+    if (!updatedProduct) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
 
     // Return success response
     res.json({ message: 'Product updated successfully', product: updatedProduct });
@@ -59,11 +61,13 @@ const updateProduct = async (req, res) => {
 // Controller function to handle deleting a product
 const deleteProduct = async (req, res) => {
   try {
-    // Extract product ID from request parameters
-    const { id } = req.params;
+    // Delete the product from the database
+    const product = await Product.findByIdAndDelete(req.params.id);
 
-    // Delete product from the database
-    await Product.findByIdAndDelete(id);
+    // Check if the product exists
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
 
     // Return success response
     res.json({ message: 'Product deleted successfully' });
@@ -73,4 +77,9 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-module.exports = { getAllProducts, createProduct, updateProduct, deleteProduct };
+module.exports = {
+  getAllProducts,
+  createProduct,
+  updateProduct,
+  deleteProduct
+};
