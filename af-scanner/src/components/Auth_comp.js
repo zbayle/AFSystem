@@ -3,7 +3,7 @@ import { loginUser } from '../services/login_api';
 import { getUserProfile } from '../services/getProfile_api'; // Import getUserProfile service
 import { fetchRoleDetails } from '../services/perms_api'; // Import fetchRoleDetails service
 
-export const AuthContext = createContext();
+export const AuthContext = createContext(); 
 
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
