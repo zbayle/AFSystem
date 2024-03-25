@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 import { loginUser } from '../services/login_api';
 import { getUserProfile } from '../services/getProfile_api'; // Import getUserProfile service
+import { fetchRoleDetails } from '../services/perms_api'; // Import fetchRoleDetails service
 
 export const AuthContext = createContext();
 
@@ -9,6 +10,7 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [username, setUsername] = useState('');
   const [role, setRole] = useState('guest');
+  const [perms, setPerms] = useState(null); // State to store permissions
 
   const login = async (username, password) => {
     try {
@@ -19,6 +21,9 @@ const AuthProvider = ({ children }) => {
       const userProfile = await getUserProfile(userData.token); // Call getUserProfile service
       setUsername(userProfile.username);
       setRole(userProfile.role);
+
+      const roleDetails = await fetchRoleDetails(userProfile.role, userData.token); // Fetch role details
+      setPerms(roleDetails.perms); // Set permissions
     } catch (error) {
       console.log(error);
     }
@@ -29,14 +34,15 @@ const AuthProvider = ({ children }) => {
     setRole('guest');
     setToken(null);
     setIsAuthenticated(false);
+    setPerms(null); // Reset permissions on logout
   };
 
   const authContextValue = {
-    isAuthenticated,
+    isAuthenticated, // Include isAuthenticated in context value
     login,
     logout,
     token,
-    user: isAuthenticated ? { username, role } : null, // Add user object to context
+    user: isAuthenticated ? { username, role, perms } : null, // Add user object to context
   };
 
   return (

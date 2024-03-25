@@ -11,6 +11,33 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+//Controller function to handle retrieving a product by barcode
+const getProductByBarcode = async (req, res) => {
+  try {
+    if (!req.params.barcode) {
+      return res.status(400).json({ message: 'No barcode provided' });
+    }
+
+    const product = await Product.findOne({ upc: req.params.barcode });
+
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    res.json(product);
+  } catch (error) {
+    console.error('Error retrieving product:', error);
+    if (error instanceof mongoose.Error.CastError && error.kind === 'ObjectId') {
+      return res.status(400).json({ message: 'Invalid barcode format' });
+    }
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+
+
+
 // Controller function to handle creating a new product
 const createProduct = async (req, res) => { 
   try {
@@ -25,7 +52,7 @@ const createProduct = async (req, res) => {
     // Create new product instance
     const newProduct = new Product({ displayName, shortName, cost, unitsOnHand });
 
-    // Save new product to database
+    // Save new product to database 
     await newProduct.save();
 
     // Return success response
@@ -38,6 +65,9 @@ const createProduct = async (req, res) => {
 
 // Controller function to handle updating a product
 const updateProduct = async (req, res) => {
+  console.log('updateProduct called with id:', req.params.id);
+  console.log('Request body:', req.body);
+
   try {
     // Find product by id and update it
     const updatedProduct = await Product.findByIdAndUpdate(
@@ -47,8 +77,11 @@ const updateProduct = async (req, res) => {
     );
 
     if (!updatedProduct) {
+      console.log('Product not found:', req.params.id);
       return res.status(404).json({ message: 'Product not found' });
     }
+
+    console.log('Product updated successfully:', updatedProduct);
 
     // Return success response
     res.json({ message: 'Product updated successfully', product: updatedProduct });
@@ -77,8 +110,9 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-module.exports = {
+module.exports = { 
   getAllProducts,
+  getProductByBarcode,
   createProduct,
   updateProduct,
   deleteProduct

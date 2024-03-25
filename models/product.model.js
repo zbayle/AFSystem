@@ -16,6 +16,11 @@ const productSchema = new mongoose.Schema({
   unitsOnHand: {
     type: Number,
     required: true
+  },
+  upc: {
+    type: String,
+    required: true,
+    unique: false
   }
 });
 

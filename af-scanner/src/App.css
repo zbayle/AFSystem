@@ -51,3 +51,29 @@
 .navbar-username {
   margin-right: 1em;
 }
+
+@keyframes scan {
+  0% { top: 0; }
+  50% { top: 100%; }
+  100% { top: 0; }
+}
+
+.scanner {
+  position: relative;
+  width: 640px; /* Set to the width of the video */
+  height: 480px; /* Set to the height of the video */
+  margin: 0 auto; /* Center the scanner div */
+}
+
+.scanner-line {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, red, transparent);
+  box-shadow: 0 0 10px red, 0 0 5px red;
+  z-index: 1;
+  animation: scan 4s linear infinite;
+}
