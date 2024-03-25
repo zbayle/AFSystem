@@ -12,7 +12,7 @@ function ScanProductButton() {
 
   const hasScanOutProductPermission = user.perms[0].scanOutProduct;
 
-  console.log('hasScanOutProductPermission:', hasScanOutProductPermission);
+  //console.log('hasScanOutProductPermission:', hasScanOutProductPermission);
 
   if (!hasScanOutProductPermission) {
     return null;

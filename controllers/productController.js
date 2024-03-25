@@ -42,15 +42,15 @@ const getProductByBarcode = async (req, res) => {
 const createProduct = async (req, res) => { 
   try {
     // Extract fields from request body
-    const { displayName, shortName, cost, unitsOnHand } = req.body;
+    const { displayName, shortName, cost, unitsOnHand, upc } = req.body;
 
     // Validate request body
-    if (!displayName || !shortName || !cost || !unitsOnHand) {
+    if (!displayName || !shortName || !cost || !unitsOnHand || !upc) {
       return res.status(400).json({ message: 'displayName, shortName, cost, and unitsOnHand are required' });
     }
 
     // Create new product instance
-    const newProduct = new Product({ displayName, shortName, cost, unitsOnHand });
+    const newProduct = new Product({ displayName, shortName, cost, unitsOnHand, upc });
 
     // Save new product to database 
     await newProduct.save();

@@ -8,12 +8,14 @@ require('dotenv').config();
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/productRoutes');
 const PermsRoutes = require('./routes/PermsRoutes');
+const scanRecord = require('./routes/scanRecordRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -29,6 +31,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/perms', PermsRoutes);
+app.use('/api/', scanRecord);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

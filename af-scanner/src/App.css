@@ -2,17 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -41,7 +30,9 @@
   display: flex;
   justify-content: space-between;
   padding: 1em;
-  background-color: #006fdd;
+  background-color: #ffffff;
+  border-bottom: rgba(0, 0, 0, 0.185) 2px solid;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.192);
 }
 
 .navbar-logo {
@@ -76,4 +67,8 @@
   box-shadow: 0 0 10px red, 0 0 5px red;
   z-index: 1;
   animation: scan 4s linear infinite;
+}
+
+.scanner video {
+  filter: brightness(0.5);
 }
