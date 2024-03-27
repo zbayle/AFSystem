@@ -1,7 +1,7 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { loginUser } from '../services/login_api';
 import { getUserProfile } from '../services/getProfile_api'; // Import getUserProfile service
-import { fetchRoleDetails } from '../services/perms_api'; // Import fetchRoleDetails service
+import { fetchRoleDetails } from '../services/perms_api'; // Import fetchRoleDetails service 
 
 export const AuthContext = createContext(); 
 
@@ -10,7 +10,19 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [username, setUsername] = useState('');
   const [role, setRole] = useState('guest');
-  const [perms, setPerms] = useState(null); // State to store permissions
+  const [perms, setPerms] = useState(null); 
+
+  useEffect(() => {
+    if (role !== 'guest' && token) {
+      fetchRoleDetails(role, token)
+        .then(roleDetails => {
+          setPerms(roleDetails.perms); // Set permissions
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  }, [role, token]);
 
   const login = async (username, password) => {
     try {

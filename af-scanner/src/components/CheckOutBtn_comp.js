@@ -4,7 +4,7 @@ import { AuthContext } from '../components/Auth_comp'; // Import AuthContext
 function ScanProductButton() {
   const { user } = useContext(AuthContext); // Use useContext to get user
 
-  console.log('ScanProductButton user:', user);
+  //console.log('ScanProductButton user:', user);
 
   if (!user || !user.perms || !user.perms[0]) {
     return null;

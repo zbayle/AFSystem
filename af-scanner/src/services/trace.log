@@ -1,0 +1,114 @@
+console.trace() getPerms called 
+AppContent@http://localhost:3000/static/js/bundle.js:112:56
+AuthProvider@http://localhost:3000/static/js/bundle.js:228:22
+App
+Router@http://localhost:3000/static/js/bundle.js:45527:7
+BrowserRouter@http://localhost:3000/static/js/bundle.js:43477:7 localhost:3000:13441:25
+    overrideMethod (index):13441
+    fetchRoleDetails perms_api.js:6
+    AppContent App.js:25
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    (Async: EventHandlerNonNull)
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+
+
+console.trace() getPerms called localhost:3000:13441:25
+    overrideMethod (index):13441
+    fetchRoleDetails perms_api.js:6
+    login Auth_comp.js:37
+    handleSubmit LoginBox_comp.js:13
+    React 23
+    js index.js:8
+    factory react refresh:6
+    Webpack 3
+
+
+
+
+console.trace() getPerms called 
+AppContent@http://localhost:3000/static/js/bundle.js:112:56
+AuthProvider@http://localhost:3000/static/js/bundle.js:228:22
+App
+Router@http://localhost:3000/static/js/bundle.js:45527:7
+BrowserRouter@http://localhost:3000/static/js/bundle.js:43477:7 localhost:3000:13441:25
+    overrideMethod (index):13441
+    fetchRoleDetails perms_api.js:6
+    AppContent App.js:25
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    (Async: EventHandlerNonNull)
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+
+
+
+
+console.trace() getPerms called 
+AuthProvider@http://localhost:3000/static/js/bundle.js:228:22
+App
+Router@http://localhost:3000/static/js/bundle.js:45527:7
+BrowserRouter@http://localhost:3000/static/js/bundle.js:43477:7 localhost:3000:13441:25
+    overrideMethod (index):13441
+    fetchRoleDetails perms_api.js:6
+    AuthProvider Auth_comp.js:17
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    (Async: EventHandlerNonNull)
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+
+
+
+console.trace() getPerms called 
+AppContent@http://localhost:3000/static/js/bundle.js:112:56
+AuthProvider@http://localhost:3000/static/js/bundle.js:228:22
+App
+Router@http://localhost:3000/static/js/bundle.js:45527:7
+BrowserRouter@http://localhost:3000/static/js/bundle.js:43477:7 localhost:3000:13441:25
+    overrideMethod (index):13441
+    fetchRoleDetails perms_api.js:6
+    AppContent App.js:25
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    (Async: EventHandlerNonNull)
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+
+
+
+console.trace() getPerms called 
+AppContent@http://localhost:3000/static/js/bundle.js:112:56
+AuthProvider@http://localhost:3000/static/js/bundle.js:228:22
+App
+Router@http://localhost:3000/static/js/bundle.js:45527:7
+BrowserRouter@http://localhost:3000/static/js/bundle.js:43477:7 localhost:3000:13441:25
+    overrideMethod (index):13441
+    fetchRoleDetails perms_api.js:6
+    AppContent App.js:25
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    (Async: EventHandlerNonNull)
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24

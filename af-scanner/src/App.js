@@ -5,7 +5,7 @@ import HomeView from './views/home_view';
 import NavigationBar from './components/Navbar_comp';
 import Scanner from './components/Scanner_comp';
 import AuthProvider, { AuthContext } from './components/Auth_comp'; // Import AuthContext
-import { fetchRoleDetails } from './services/perms_api'; // Import fetchRoleDetails
+import { fetchRoleDetails } from './services/perms_api'; // Import fetchRoleDetails 
 
 function App() {
   return (
@@ -20,13 +20,13 @@ function AppContent() {
   const [roleDetails, setRoleDetails] = useState(null); // State to store role details
 
   useEffect(() => {
-    if (isAuthenticated && user && user.role) {
-      // Fetch role details when user logs in and has a role
+    if (isAuthenticated && user && user.role && !roleDetails) {
+      // Fetch role details when user logs in and has a role, and roleDetails is not already set
       fetchRoleDetails(user.role, token)
         .then(data => setRoleDetails(data))
         .catch(error => console.log(error));
     }
-  }, [isAuthenticated, token, user]);
+  }, [isAuthenticated, token, user, roleDetails]);
 
   return (
     <div>
