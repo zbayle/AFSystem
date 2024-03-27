@@ -1,10 +1,6 @@
-// AdminDashboard.js
 import React, { useContext } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { AuthContext } from '../components/Auth_comp'; // Import AuthContext
-// import UserData from './UserData';
-// import ProductData from './ProductData';
-// import SalesData from './SalesData';
 
 function AdminDashboard() {
   const { isAuthenticated, user } = useContext(AuthContext); // Access isAuthenticated and user from AuthContext
@@ -20,22 +16,10 @@ function AdminDashboard() {
   }
 
   return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li><Link to="/admin/users">Users</Link></li>
-            <li><Link to="/admin/products">Products</Link></li>
-            <li><Link to="/admin/sales">Sales</Link></li>
-          </ul>
-        </nav>
-
-        <Switch>
-          <Route path="/">
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <div>
+      <h1>Admin Dashboard</h1>
+      {/* Rest of your dashboard code */}
+    </div>
   );
 }
 
