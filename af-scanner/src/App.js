@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'; // Import useEff
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import HomeView from './views/home_view';
-import AdminDashboard from './views/admin_view';
+import AdminDashboard from './components/admin/AdminDashboard_comp'; // Import AdminDashboard
 import NavigationBar from './components/Navbar_comp';
 import Scanner from './components/Scanner_comp';
 import AuthProvider, { AuthContext } from './components/Auth_comp'; // Import AuthContext
