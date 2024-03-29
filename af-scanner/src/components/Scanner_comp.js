@@ -41,6 +41,14 @@ function Scanner() {
   const { token } = useContext(AuthContext);
 
   useEffect(() => {
+    console.log('Scanner mounted');
+
+    return () => {
+      console.log('Scanner unmounted');
+    };
+  }, []);
+
+  useEffect(() => {
     const handleKeyPress = (e) => {
       if (e.key === "Enter") {
         handleBarcode(barcodeInput);

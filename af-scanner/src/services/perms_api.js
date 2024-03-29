@@ -3,7 +3,7 @@ import { AuthContext } from '../components/Auth_comp';
 
 
 export async function fetchRoleDetails(role, token) {
-    console.trace('getPerms called');
+    //console.trace('getPerms called');
     const response = await fetch(`http://localhost:3001/api/perms/getPerms`, {
       method: 'GET',
       headers: {
