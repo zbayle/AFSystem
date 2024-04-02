@@ -2,6 +2,14 @@ import React from 'react';
 import { AuthContext } from '../Auth_comp'; // Import AuthContext
 
 class AdminDashboard extends React.Component {
+  componentDidMount() {
+    console.log('AdminDashboard mounted');
+  }
+
+  componentWillUnmount() {
+    console.log('AdminDashboard unmounted');
+  }
+
   render() {
     return (
       <AuthContext.Consumer>

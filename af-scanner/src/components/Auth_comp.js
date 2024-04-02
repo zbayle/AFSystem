@@ -1,24 +1,32 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { loginUser } from '../services/login_api';
-import { getUserProfile } from '../services/getProfile_api'; // Import getUserProfile service
-import { fetchRoleDetails } from '../services/perms_api'; // Import fetchRoleDetails service 
+import { getUserProfile } from '../services/getProfile_api';
+import { fetchRoleDetails } from '../services/perms_api';
 
-export const AuthContext = React.createContext(); 
+export const AuthContext = React.createContext();
 
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(null);
   const [username, setUsername] = useState('');
-  const [role, setRole] = useState('guest');
-  const [perms, setPerms] = useState({ dashBoardAccess: false }); // Set default perms
+  const [role, setRole] = useState('');
+  const [perms, setPerms] = useState({ dashBoardAccess: false });
   const [loading, setLoading] = useState(true);
-  const [roleDetails, setRoleDetails] = useState(null); // Add roleDetails state variable
+  const [roleDetails, setRoleDetails] = useState(null);
 
+  
   useEffect(() => {
-    console.log('AuthProvider mounted'); // Log when the component mounts
+    console.log('AuthProvider mounted');
+
+    // Check localStorage for token on mount
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+      setIsAuthenticated(true);
+    }
 
     return () => {
-      console.log('AuthProvider unmounted'); // Log when the component unmounts
+      console.log('AuthProvider unmounted');
     };
   }, []);
 
@@ -26,32 +34,36 @@ const AuthProvider = ({ children }) => {
     if (isAuthenticated && role !== 'guest' && token) {
       fetchRoleDetails(role, token)
         .then(roleDetails => {
-          setPerms(roleDetails.perms[0]); // Set permissions
-          setRoleDetails(roleDetails); // Set roleDetails
-          setLoading(false); // Set loading to false when permissions are fetched
+          setPerms(roleDetails.perms[0]);
+          setRoleDetails(roleDetails);
+          setLoading(false);
         })
         .catch(error => {
           console.log(error);
-          setLoading(false); // Set loading to false if an error occurs
+          setLoading(false);
         });
     } else {
-      setLoading(false); // Set loading to false if the user is a guest
+      setLoading(false);
     }
   }, [isAuthenticated, role, token]);
 
   const login = async (username, password) => {
     try {
       const userData = await loginUser(username, password);
+      
+      // Store token localStorage
+      localStorage.setItem('token', userData.token);
+  
       setToken(userData.token);
       setIsAuthenticated(true);
-
-      const userProfile = await getUserProfile(userData.token); // Call getUserProfile service
+  
+      const userProfile = await getUserProfile(userData.token);
       setUsername(userProfile.username);
       setRole(userProfile.role);
-
-      const roleDetails = await fetchRoleDetails(userProfile.role, userData.token); // Fetch role details
-      setPerms(roleDetails.perms[0]); // Set permissions
-      setRoleDetails(roleDetails); // Set roleDetails
+  
+      const roleDetails = await fetchRoleDetails(userProfile.role, userData.token);
+      setPerms(roleDetails.perms[0]);
+      setRoleDetails(roleDetails);
     } catch (error) {
       console.log(error);
     }
@@ -62,16 +74,19 @@ const AuthProvider = ({ children }) => {
     setRole('guest');
     setToken(null);
     setIsAuthenticated(false);
-    setPerms({ dashBoardAccess: false }); // Reset permissions on logout
-    setRoleDetails(null); // Reset roleDetails on logout
+    setPerms({ dashBoardAccess: false });
+    setRoleDetails(null);
+
+    // Remove token from localStorage
+    localStorage.removeItem('token');
   };
 
   const authContextValue = {
-    isAuthenticated, // Include isAuthenticated in context value
+    isAuthenticated,
     login,
     logout,
     token,
-    user: isAuthenticated ? { username, role, perms, roleDetails } : null, // Add roleDetails to user object
+    user: isAuthenticated ? { username, role, perms, roleDetails } : null,
   };
 
   return (

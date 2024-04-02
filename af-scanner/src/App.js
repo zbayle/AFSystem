@@ -36,6 +36,25 @@ function AppContent() {
     };
   }, []);
 
+
+  function AdminRoute() {
+    return (
+      <>
+        <AdminDashboard />
+      </>
+    );
+  }
+
+  function HomeRoute() {
+    return (
+      <>
+        <HomeView />
+        {isAuthenticated && <Scanner roleDetails={roleDetails}/>}
+      </>
+    );
+  }
+
+
   useEffect(() => {
     if (isAuthenticated && user && user.role && !roleDetails) {
       fetchRoleDetails(user.role, token)
@@ -49,16 +68,8 @@ function AppContent() {
       <NavigationBar />
       
       <Routes>
-        <Route exact path="/" element={
-          <>
-            <HomeView />
-            {isAuthenticated && <Scanner roleDetails={roleDetails}/>}
-          </>
-        } />
-        <Route path="/admin" element={
-          <>
-            <AdminDashboard />
-          </>
+        <Route exact path="/" element={<HomeRoute />} />
+        <Route path="/admin" element={<AdminRoute roleDetails={roleDetails} />
         } />
       </Routes>
     </div>
