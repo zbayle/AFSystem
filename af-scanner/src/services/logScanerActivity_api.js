@@ -1,11 +1,13 @@
 // logScanerActivity_api.js
-function logScanActivity(productId, userId) {
+function logScanActivity(productId, techId) {
+  console.log('ProductId:', productId);
+  console.log('TechId:', techId);
     return fetch('http://localhost:3001/api/logScan', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ productId, userId }),
+      body: JSON.stringify({ productId, techId }),
     })
     .then(response => {
       if (!response.ok) {

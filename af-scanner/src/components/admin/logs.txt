@@ -1,0 +1,487 @@
+
+Scanner mounted Scanner_comp.js:46
+New units on hand: 25 Scanner_comp.js:14
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZmMjUxNTBkOWQ2YjZkYzAxNjQxYzEiLCJpYXQiOjE3MTIyNDcyNjEsImV4cCI6MTcxMjI1MDg2MX0.6xJnBvnrR17RGpZKeOt-WTULVm3Ro4U1xKO8loP8wv4 Scanner_comp.js:138
+New units on hand: 25 Scanner_comp.js:14
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZmMjUxNTBkOWQ2YjZkYzAxNjQxYzEiLCJpYXQiOjE3MTIyNDcyNjEsImV4cCI6MTcxMjI1MDg2MX0.6xJnBvnrR17RGpZKeOt-WTULVm3Ro4U1xKO8loP8wv4 Scanner_comp.js:138
+New units on hand: 25 Scanner_comp.js:14
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZmMjUxNTBkOWQ2YjZkYzAxNjQxYzEiLCJpYXQiOjE3MTIyNDcyNjEsImV4cCI6MTcxMjI1MDg2MX0.6xJnBvnrR17RGpZKeOt-WTULVm3Ro4U1xKO8loP8wv4 Scanner_comp.js:138
+New units on hand: 25 Scanner_comp.js:14
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZmMjUxNTBkOWQ2YjZkYzAxNjQxYzEiLCJpYXQiOjE3MTIyNDcyNjEsImV4cCI6MTcxMjI1MDg2MX0.6xJnBvnrR17RGpZKeOt-WTULVm3Ro4U1xKO8loP8wv4 Scanner_comp.js:138
+New units on hand: 25 Scanner_comp.js:14
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZmMjUxNTBkOWQ2YjZkYzAxNjQxYzEiLCJpYXQiOjE3MTIyNDcyNjEsImV4cCI6MTcxMjI1MDg2MX0.6xJnBvnrR17RGpZKeOt-WTULVm3Ro4U1xKO8loP8wv4 Scanner_comp.js:138
+New units on hand: 25 Scanner_comp.js:14
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZmMjUxNTBkOWQ2YjZkYzAxNjQxYzEiLCJpYXQiOjE3MTIyNDcyNjEsImV4cCI6MTcxMjI1MDg2MX0.6xJnBvnrR17RGpZKeOt-WTULVm3Ro4U1xKO8loP8wv4 Scanner_comp.js:138
+New units on hand: 25 Scanner_comp.js:14
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZmMjUxNTBkOWQ2YjZkYzAxNjQxYzEiLCJpYXQiOjE3MTIyNDcyNjEsImV4cCI6MTcxMjI1MDg2MX0.6xJnBvnrR17RGpZKeOt-WTULVm3Ro4U1xKO8loP8wv4 Scanner_comp.js:138
+New units on hand: 25 Scanner_comp.js:14
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZmMjUxNTBkOWQ2YjZkYzAxNjQxYzEiLCJpYXQiOjE3MTIyNDcyNjEsImV4cCI6MTcxMjI1MDg2MX0.6xJnBvnrR17RGpZKeOt-WTULVm3Ro4U1xKO8loP8wv4 Scanner_comp.js:138
+New units on hand: 25 Scanner_comp.js:14
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZmMjUxNTBkOWQ2YjZkYzAxNjQxYzEiLCJpYXQiOjE3MTIyNDcyNjEsImV4cCI6MTcxMjI1MDg2MX0.6xJnBvnrR17RGpZKeOt-WTULVm3Ro4U1xKO8loP8wv4 Scanner_comp.js:138
+New units on hand: 25 Scanner_comp.js:14
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZmMjUxNTBkOWQ2YjZkYzAxNjQxYzEiLCJpYXQiOjE3MTIyNDcyNjEsImV4cCI6MTcxMjI1MDg2MX0.6xJnBvnrR17RGpZKeOt-WTULVm3Ro4U1xKO8loP8wv4 Scanner_comp.js:138
+New units on hand: 25 Scanner_comp.js:14
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZmMjUxNTBkOWQ2YjZkYzAxNjQxYzEiLCJpYXQiOjE3MTIyNDcyNjEsImV4cCI6MTcxMjI1MDg2MX0.6xJnBvnrR17RGpZKeOt-WTULVm3Ro4U1xKO8loP8wv4 Scanner_comp.js:138
+New units on hand: 25 Scanner_comp.js:14
+Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWZmMjUxNTBkOWQ2YjZkYzAxNjQxYzEiLCJpYXQiOjE3MTIyNDcyNjEsImV4cCI6MTcxMjI1MDg2MX0.6xJnBvnrR17RGpZKeOt-WTULVm3Ro4U1xKO8loP8wv4 Scanner_comp.js:138
+New units on hand: 25 Scanner_comp.js:14
+XHRPOST
+http://localhost:3001/api/logScan
+[HTTP/1.1 400 Bad Request 1ms]
+
+XHRPOST
+http://localhost:3001/api/logScan
+[HTTP/1.1 400 Bad Request 5ms]
+
+XHRPOST
+http://localhost:3001/api/logScan
+[HTTP/1.1 400 Bad Request 11ms]
+
+Error: Error: HTTP error! status: 400
+    logScanActivity logScanerActivity_api.js:12
+    promise callback*logScanActivity logScanerActivity_api.js:9
+    Scanner Scanner_comp.js:147
+    n quagga.min.js:1
+    publish quagga.min.js:1
+    publish quagga.min.js:1
+    v quagga.min.js:1
+    onmessage quagga.min.js:1
+    x quagga.min.js:1
+    A quagga.min.js:1
+    u quagga.min.js:1
+    trigger quagga.min.js:1
+    i quagga.min.js:1
+    promise callback*i quagga.min.js:1
+    init quagga.min.js:1
+    Scanner Scanner_comp.js:99
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+localhost:3000:13441:25
+XHRPOST
+http://localhost:3001/api/logScan
+[HTTP/1.1 400 Bad Request 1ms]
+
+Error: Error: HTTP error! status: 400
+    logScanActivity logScanerActivity_api.js:12
+    promise callback*logScanActivity logScanerActivity_api.js:9
+    Scanner Scanner_comp.js:147
+    n quagga.min.js:1
+    publish quagga.min.js:1
+    publish quagga.min.js:1
+    v quagga.min.js:1
+    onmessage quagga.min.js:1
+    x quagga.min.js:1
+    A quagga.min.js:1
+    u quagga.min.js:1
+    trigger quagga.min.js:1
+    i quagga.min.js:1
+    promise callback*i quagga.min.js:1
+    init quagga.min.js:1
+    Scanner Scanner_comp.js:99
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+localhost:3000:13441:25
+XHRPOST
+http://localhost:3001/api/logScan
+[HTTP/1.1 400 Bad Request 10ms]
+
+Error: Error: HTTP error! status: 400
+    logScanActivity logScanerActivity_api.js:12
+    promise callback*logScanActivity logScanerActivity_api.js:9
+    Scanner Scanner_comp.js:147
+    n quagga.min.js:1
+    publish quagga.min.js:1
+    publish quagga.min.js:1
+    v quagga.min.js:1
+    onmessage quagga.min.js:1
+    x quagga.min.js:1
+    A quagga.min.js:1
+    u quagga.min.js:1
+    trigger quagga.min.js:1
+    i quagga.min.js:1
+    promise callback*i quagga.min.js:1
+    init quagga.min.js:1
+    Scanner Scanner_comp.js:99
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+localhost:3000:13441:25
+XHRPOST
+http://localhost:3001/api/logScan
+[HTTP/1.1 400 Bad Request 5ms]
+
+XHRPOST
+http://localhost:3001/api/logScan
+[HTTP/1.1 400 Bad Request 36ms]
+
+XHRPOST
+http://localhost:3001/api/logScan
+[HTTP/1.1 400 Bad Request 41ms]
+
+XHRPOST
+http://localhost:3001/api/logScan
+[HTTP/1.1 400 Bad Request 13ms]
+
+XHRPOST
+http://localhost:3001/api/logScan
+[HTTP/1.1 400 Bad Request 35ms]
+
+XHRPOST
+http://localhost:3001/api/logScan
+[HTTP/1.1 400 Bad Request 70ms]
+
+XHRPOST
+http://localhost:3001/api/logScan
+[HTTP/1.1 400 Bad Request 44ms]
+
+XHRPOST
+http://localhost:3001/api/logScan
+[HTTP/1.1 400 Bad Request 82ms]
+
+XHRPOST
+http://localhost:3001/api/logScan
+[HTTP/1.1 400 Bad Request 84ms]
+
+Error: Error: HTTP error! status: 400
+    logScanActivity logScanerActivity_api.js:12
+    promise callback*logScanActivity logScanerActivity_api.js:9
+    Scanner Scanner_comp.js:147
+    n quagga.min.js:1
+    publish quagga.min.js:1
+    publish quagga.min.js:1
+    v quagga.min.js:1
+    onmessage quagga.min.js:1
+    x quagga.min.js:1
+    A quagga.min.js:1
+    u quagga.min.js:1
+    trigger quagga.min.js:1
+    i quagga.min.js:1
+    promise callback*i quagga.min.js:1
+    init quagga.min.js:1
+    Scanner Scanner_comp.js:99
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+localhost:3000:13441:25
+Error: Error: HTTP error! status: 400
+    logScanActivity logScanerActivity_api.js:12
+    promise callback*logScanActivity logScanerActivity_api.js:9
+    Scanner Scanner_comp.js:147
+    n quagga.min.js:1
+    publish quagga.min.js:1
+    publish quagga.min.js:1
+    v quagga.min.js:1
+    onmessage quagga.min.js:1
+    x quagga.min.js:1
+    A quagga.min.js:1
+    u quagga.min.js:1
+    trigger quagga.min.js:1
+    i quagga.min.js:1
+    promise callback*i quagga.min.js:1
+    init quagga.min.js:1
+    Scanner Scanner_comp.js:99
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+localhost:3000:13441:25
+Error: Error: HTTP error! status: 400
+    logScanActivity logScanerActivity_api.js:12
+    promise callback*logScanActivity logScanerActivity_api.js:9
+    Scanner Scanner_comp.js:147
+    n quagga.min.js:1
+    publish quagga.min.js:1
+    publish quagga.min.js:1
+    v quagga.min.js:1
+    onmessage quagga.min.js:1
+    x quagga.min.js:1
+    A quagga.min.js:1
+    u quagga.min.js:1
+    trigger quagga.min.js:1
+    i quagga.min.js:1
+    promise callback*i quagga.min.js:1
+    init quagga.min.js:1
+    Scanner Scanner_comp.js:99
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+localhost:3000:13441:25
+Error: Error: HTTP error! status: 400
+    logScanActivity logScanerActivity_api.js:12
+    promise callback*logScanActivity logScanerActivity_api.js:9
+    Scanner Scanner_comp.js:147
+    n quagga.min.js:1
+    publish quagga.min.js:1
+    publish quagga.min.js:1
+    v quagga.min.js:1
+    onmessage quagga.min.js:1
+    x quagga.min.js:1
+    A quagga.min.js:1
+    u quagga.min.js:1
+    trigger quagga.min.js:1
+    i quagga.min.js:1
+    promise callback*i quagga.min.js:1
+    init quagga.min.js:1
+    Scanner Scanner_comp.js:99
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+localhost:3000:13441:25
+Error: Error: HTTP error! status: 400
+    logScanActivity logScanerActivity_api.js:12
+    promise callback*logScanActivity logScanerActivity_api.js:9
+    Scanner Scanner_comp.js:147
+    n quagga.min.js:1
+    publish quagga.min.js:1
+    publish quagga.min.js:1
+    v quagga.min.js:1
+    onmessage quagga.min.js:1
+    x quagga.min.js:1
+    A quagga.min.js:1
+    u quagga.min.js:1
+    trigger quagga.min.js:1
+    i quagga.min.js:1
+    promise callback*i quagga.min.js:1
+    init quagga.min.js:1
+    Scanner Scanner_comp.js:99
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+localhost:3000:13441:25
+Error: Error: HTTP error! status: 400
+    logScanActivity logScanerActivity_api.js:12
+    promise callback*logScanActivity logScanerActivity_api.js:9
+    Scanner Scanner_comp.js:147
+    n quagga.min.js:1
+    publish quagga.min.js:1
+    publish quagga.min.js:1
+    v quagga.min.js:1
+    onmessage quagga.min.js:1
+    x quagga.min.js:1
+    A quagga.min.js:1
+    u quagga.min.js:1
+    trigger quagga.min.js:1
+    i quagga.min.js:1
+    promise callback*i quagga.min.js:1
+    init quagga.min.js:1
+    Scanner Scanner_comp.js:99
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+localhost:3000:13441:25
+    overrideMethod (index):13441
+    logScanActivity logScanerActivity_api.js:17
+    (Async: promise callback)
+    logScanActivity logScanerActivity_api.js:15
+    Scanner Scanner_comp.js:147
+    n quagga.min.js:1
+    publish quagga.min.js:1
+    publish quagga.min.js:1
+    v quagga.min.js:1
+    onmessage quagga.min.js:1
+    (Async: EventHandlerNonNull)
+    x quagga.min.js:1
+    A quagga.min.js:1
+    u quagga.min.js:1
+    trigger quagga.min.js:1
+    i quagga.min.js:1
+    (Async: promise callback)
+    i quagga.min.js:1
+    init quagga.min.js:1
+    Scanner Scanner_comp.js:99
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    (Async: EventHandlerNonNull)
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+Error: Error: HTTP error! status: 400
+    logScanActivity logScanerActivity_api.js:12
+    promise callback*logScanActivity logScanerActivity_api.js:9
+    Scanner Scanner_comp.js:147
+    n quagga.min.js:1
+    publish quagga.min.js:1
+    publish quagga.min.js:1
+    v quagga.min.js:1
+    onmessage quagga.min.js:1
+    x quagga.min.js:1
+    A quagga.min.js:1
+    u quagga.min.js:1
+    trigger quagga.min.js:1
+    i quagga.min.js:1
+    promise callback*i quagga.min.js:1
+    init quagga.min.js:1
+    Scanner Scanner_comp.js:99
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+localhost:3000:13441:25
+Error: Error: HTTP error! status: 400
+    logScanActivity logScanerActivity_api.js:12
+    promise callback*logScanActivity logScanerActivity_api.js:9
+    Scanner Scanner_comp.js:147
+    n quagga.min.js:1
+    publish quagga.min.js:1
+    publish quagga.min.js:1
+    v quagga.min.js:1
+    onmessage quagga.min.js:1
+    x quagga.min.js:1
+    A quagga.min.js:1
+    u quagga.min.js:1
+    trigger quagga.min.js:1
+    i quagga.min.js:1
+    promise callback*i quagga.min.js:1
+    init quagga.min.js:1
+    Scanner Scanner_comp.js:99
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+localhost:3000:13441:25
+Error: Error: HTTP error! status: 400
+    logScanActivity logScanerActivity_api.js:12
+    promise callback*logScanActivity logScanerActivity_api.js:9
+    Scanner Scanner_comp.js:147
+    n quagga.min.js:1
+    publish quagga.min.js:1
+    publish quagga.min.js:1
+    v quagga.min.js:1
+    onmessage quagga.min.js:1
+    x quagga.min.js:1
+    A quagga.min.js:1
+    u quagga.min.js:1
+    trigger quagga.min.js:1
+    i quagga.min.js:1
+    promise callback*i quagga.min.js:1
+    init quagga.min.js:1
+    Scanner Scanner_comp.js:99
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+localhost:3000:13441:25
+Error: Error: HTTP error! status: 400
+    logScanActivity logScanerActivity_api.js:12
+    promise callback*logScanActivity logScanerActivity_api.js:9
+    Scanner Scanner_comp.js:147
+    n quagga.min.js:1
+    publish quagga.min.js:1
+    publish quagga.min.js:1
+    v quagga.min.js:1
+    onmessage quagga.min.js:1
+    x quagga.min.js:1
+    A quagga.min.js:1
+    u quagga.min.js:1
+    trigger quagga.min.js:1
+    i quagga.min.js:1
+    promise callback*i quagga.min.js:1
+    init quagga.min.js:1
+    Scanner Scanner_comp.js:99
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+localhost:3000:13441:25
+Error: Error: HTTP error! status: 400
+    logScanActivity logScanerActivity_api.js:12
+    promise callback*logScanActivity logScanerActivity_api.js:9
+    Scanner Scanner_comp.js:147
+    n quagga.min.js:1
+    publish quagga.min.js:1
+    publish quagga.min.js:1
+    v quagga.min.js:1
+    onmessage quagga.min.js:1
+    x quagga.min.js:1
+    A quagga.min.js:1
+    u quagga.min.js:1
+    trigger quagga.min.js:1
+    i quagga.min.js:1
+    promise callback*i quagga.min.js:1
+    init quagga.min.js:1
+    Scanner Scanner_comp.js:99
+    React 8
+    workLoop scheduler.development.js:266
+    flushWork scheduler.development.js:239
+    performWorkUntilDeadline scheduler.development.js:533
+    js scheduler.development.js:571
+    js scheduler.development.js:633
+    factory react refresh:6
+    Webpack 24
+localhost:3000:13441:25
+Successfully compiled asm.js code (total compilation time 1ms) 2a8faed2-b974-40e4-a3d4-075c3668f9a1
+Successfully compiled asm.js code (total compilation time 1ms) 88abbc85-ff68-47b8-8932-c1592ecd4c84
+Successfully compiled asm.js code (total compilation time 2ms) 936366e6-dd38-411a-8f67-87d03e804307
+Successfully compiled asm.js code (total compilation time 3ms) bc0608e4-aeca-487c-acf0-59627f78d3d1
+Successfully compiled asm.js code (total compilation time 7ms) 38ebcbe5-6df8-4edb-9b47-a95c1797ad0b
+Successfully compiled asm.js code (total compilation time 1ms) 8cca2a63-3a0c-46a4-83d6-5808ef7f8d2b
+Successfully compiled asm.js code (total compilation time 5ms) 0eb9bcac-e30c-45fe-815d-08d7d86d1716
+Successfully compiled asm.js code (total compilation time 6ms) 25c2cb66-24a8-4607-8a1d-512f62b78b18
+
+​
+

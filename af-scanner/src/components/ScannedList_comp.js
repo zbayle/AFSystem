@@ -1,14 +1,19 @@
 import React from 'react';
 
-function ScannedList({ items }) {
+function ScannedList({ items, user }) {
   return (
     <div>
       <h2>Scanned Items</h2>
-      <ul>
-        {items.map(item => (
-          <li key={item._id}>{item.name} - {item.unitsOnHand} left</li>
+      <div className="tile-container">
+        {items.map((item, index) => (
+          <div key={item._id + '-' + index} className="tile">
+            <h3>{item.displayName}</h3>
+            <p>{item.unitsOnHand <= 0 ? 0 : item.unitsOnHand} Left on hand</p>
+            <p>scanned by user: {user.username}({user.role})</p>
+            <sub>{new Date().toLocaleString()}</sub>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

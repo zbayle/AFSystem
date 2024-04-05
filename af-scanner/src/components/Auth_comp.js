@@ -13,6 +13,7 @@ const AuthProvider = ({ children }) => {
   const [perms, setPerms] = useState({ dashBoardAccess: false });
   const [loading, setLoading] = useState(true);
   const [roleDetails, setRoleDetails] = useState(null);
+  const [userId, setUserId] = useState(null);
 
   
   useEffect(() => {
@@ -60,7 +61,9 @@ const AuthProvider = ({ children }) => {
       const userProfile = await getUserProfile(userData.token);
       setUsername(userProfile.username);
       setRole(userProfile.role);
-  
+      setUserId(userProfile._id);
+
+
       const roleDetails = await fetchRoleDetails(userProfile.role, userData.token);
       setPerms(roleDetails.perms[0]);
       setRoleDetails(roleDetails);
@@ -86,7 +89,7 @@ const AuthProvider = ({ children }) => {
     login,
     logout,
     token,
-    user: isAuthenticated ? { username, role, perms, roleDetails } : null,
+    user: isAuthenticated ? { _id: userId,username, role, perms, roleDetails } : null,
   };
 
   return (
