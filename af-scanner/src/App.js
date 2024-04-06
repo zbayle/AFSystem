@@ -9,13 +9,6 @@ import AuthProvider, { AuthContext } from './components/Auth_comp';
 import { fetchRoleDetails } from './services/perms_api';
 
 function App() {
-  useEffect(() => {
-    console.log('App component mounted');
-
-    return () => {
-      console.log('App component unmounted');
-    };
-  }, []);
 
   return (
     <AuthProvider>
@@ -27,14 +20,6 @@ function App() {
 function AppContent() {
   const { isAuthenticated, token, user } = useContext(AuthContext);
   const [roleDetails, setRoleDetails] = useState(null);
-
-  useEffect(() => {
-    console.log('AppContent mounted');
-
-    return () => {
-      console.log('AppContent unmounted');
-    };
-  }, []);
 
 
   function AdminRoute() {

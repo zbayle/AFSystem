@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
 
   
   useEffect(() => {
-    console.log('AuthProvider mounted');
+    // console.log('AuthProvider mounted');
 
     // Check localStorage for token on mount
     const storedToken = localStorage.getItem('token');
@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
     }
 
     return () => {
-      console.log('AuthProvider unmounted');
+      // console.log('AuthProvider unmounted');
     };
   }, []);
 
@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
         })
         .catch(error => {
           console.log(error);
-          setLoading(false);
+          setLoading(false); 
         });
     } else {
       setLoading(false);

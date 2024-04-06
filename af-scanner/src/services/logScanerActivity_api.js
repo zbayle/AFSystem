@@ -1,7 +1,5 @@
 // logScanerActivity_api.js
 function logScanActivity(productId, techId) {
-  console.log('ProductId:', productId);
-  console.log('TechId:', techId);
     return fetch('http://localhost:3001/api/logScan', {
       method: 'POST',
       headers: {

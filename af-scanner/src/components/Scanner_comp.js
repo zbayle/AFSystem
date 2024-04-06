@@ -1,15 +1,12 @@
 import React, { useRef, useEffect, useState, useContext } from 'react';
-import Webcam from "react-webcam";
-import { useZxingScanner } from './ZxingScanner_comp';
-import {jwtDecode} from 'jwt-decode';
-import { stopCamera } from '../utils/camera.utl';
-
+import { handleBarcode } from './barcodeHandler_comp';
 import ScannedList from '../components/ScannedList_comp';
-import logScanActivity from '../services/logScanerActivity_api';
 import { AuthContext } from '../components/Auth_comp';  
 import '../App.css';
+import barcodeImage from '../barcode.png';
 
-async function updateUnitsOnHand(_id, currentUnitsOnHand) {
+export async function updateUnitsOnHand(_id, currentUnitsOnHand) {
+  console.log('updateUnitsOnHand called');
   try {
     const response = await fetch(`http://localhost:3001/api/products/${_id}`, {
       method: 'PUT',
@@ -34,37 +31,48 @@ async function updateUnitsOnHand(_id, currentUnitsOnHand) {
 
 function Scanner() {
   
-  const [barcodeData, setBarcodeData] = useState(null);
+  const [barcodeData, setBarcodeData] = useState("");
   const [lastScanTime, setLastScanTime] = useState(null);
   const [isCameraVisible, setIsCameraVisible] = useState(true);
   const [productData, setProductData] = useState(null);
   const [scannedItems, setScannedItems] = useState([]);
   const [isScanning, setIsScanning] = useState(false);
-  const { token } = useContext(AuthContext);
-  const { user } = useContext(AuthContext);
+  const { token, username, role } = useContext(AuthContext);
 
+
+
+  
   useEffect(() => {
-    console.log('Scanner mounted');
-
-    return () => {
-      console.log('Scanner unmounted');
+    const handleBarcodeScan = async (event) => {
+      if (event.key === "Enter") { // or whatever your scanner uses as the end character
+        // Call handleBarcode with the scanned barcode data
+        await handleBarcode(barcodeData, token, setProductData, setScannedItems);
+  
+        setBarcodeData("");
+      } else if (!event.key.startsWith('Shift')) {
+        setBarcodeData(prevData => prevData + event.key);
+      }
     };
-  }, []);
+  
+    window.addEventListener("keydown", handleBarcodeScan);
+  
+    return () => {
+      window.removeEventListener("keydown", handleBarcodeScan);
+    };
+  }, [barcodeData, token]); // Add token to the dependency array
 
-  useZxingScanner(setScannedItems, setProductData, setBarcodeData, setLastScanTime, updateUnitsOnHand, logScanActivity, user, isCameraVisible, isScanning);
 
   const scannedRecently = lastScanTime && Date.now() - lastScanTime < 10000;
-  
   return (
     <div>
         {scannedRecently && <p>Scanned a barcode!</p>}
         {barcodeData && <p>Barcode Data: {barcodeData}</p>}
         {productData && <p>Product Data: {JSON.stringify(productData)}</p>}
         <div className='scanner'>
-        {isCameraVisible && <video id="video" style={{ width: '100%', height: '100%' }} autoPlay={true} />}
+        <img src={barcodeImage} alt="Barcode" style={{width: '100%', height: '100%'}} />
             {isCameraVisible && <div className='scanner-line'></div>}
         </div>
-        <div><ScannedList items={scannedItems} user={user}/></div>
+        <div><ScannedList items={scannedItems} /></div>
     </div>
   );
 }
