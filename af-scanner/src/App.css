@@ -1,3 +1,8 @@
+body {
+  background-color: #FFFFFF; /* Set the background color of the entire page to white */
+  color: #000000; /* Set the default text color to black */
+}
+
 .App {
   text-align: center;
 }
@@ -26,27 +31,41 @@
   }
 }
 
+
+.page_title {
+  display: flex;
+  justify-content:center;
+  align-items: top;
+  height: 5vh;
+  margin-top: 10px;
+  color: #0079CD; /* Set the text color of the page title to blue */
+}
+
+
 .navbar {
   display: flex;
   justify-content: space-between;
   padding: 1em;
-  background-color: #ffffff;
+  background-color: #0079CD; /* Set the background color of the navbar to blue */
   border-bottom: rgba(0, 0, 0, 0.185) 2px solid;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.192);
+  color: #FFFFFF; /* Set the text color of the navbar to white */
 }
 
-.navbar-logo {
-  height: 2em;
+.logo {
+  height: 4em;
+  background-color: #FFFFFF; /* Set the background color of the logo to white */
 }
 
 .navbar-username {
   margin-right: 1em;
+  color: #FFFFFF; /* Set the text color of the username to white */
 }
 
 @keyframes scan {
-  0% { top: 0; }
-  50% { top: 100%; }
-  100% { top: 0; }
+  0% { top: 8%; }
+  50% { top: 40%; }
+  100% { top: 8%; }
 }
 
 .scanner {
@@ -69,6 +88,108 @@
   animation: scan 4s linear infinite;
 }
 
+.scanner img {
+  padding: 10px; /* Add some padding inside the border */
+  background-color: #ffffff00; /* Set the background color to white */
+  position: absolute;
+  top: -130px;
+}
+
 .scanner video {
-  filter: brightness(0.5);
+  filter: brightness(0.1);
+}
+
+.tile {
+  flex: 0 0 20%; /* Grow and shrink equally, base width of 20% */
+  margin: 1%; /* Add a little margin for spacing */
+  border: 1px solid rgba(0, 0, 0, 0.5); /* Add a faint border */
+  border-radius: 10px; /* Round the corners of the border */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1); /* Add a drop shadow */
+  padding: 20px; /* Add some padding inside the tile */
+  margin: 10px; /* Add some margin around the tile */
+  background-color: #FFFFFF; /* Set the background color to white */
+  overflow: auto;
+  word-wrap: break-word;
+  min-height: 300px;
+  text-align: center;
+}
+.barcode-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  width: 100%; /* Take up full width of the tile */
+  max-width: 200px; /* Prevent barcode from becoming too large */
+  height: auto; /* Adjust height automatically */
+  max-height: 100px; /* Prevent barcode from becoming too tall */
+}
+.product-name {
+  font-weight: bold;
+}
+
+.units-on-hand {
+  font-weight: bold;
+}
+.units-on-hand-low {
+  color: red;
+}
+
+.short-name {
+  display: none;
+}
+
+.cost, .upc {
+  font-weight: bold;
+}
+
+.user-name{
+  font-weight: bold;
+}
+ .inventory-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+ }
+
+.scannedlist-comp {
+  position: absolute;
+  top: 80%; /* Start from the top of the page */
+  bottom: 10%; /* Stretch to the bottom of the page */
+  left: 0; /* Start from the left of the page */
+  right: 0; /* Stretch to the right of the page */
+  margin-top: -18%; /* Remove the negative margin */
+  margin-bottom: -250px;
+  border: #363535a2 1px solid; /* Add a border to the bottom of the list */
+  border-radius: 10px;
+  background-color: #0079CD; /* Set the background color to blue */
+  box-shadow: 10px -4px 2px rgba(0, 0, 0, 0.397), 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a light box shadow on top */
+
+}
+.scanned-list {
+  padding: 20px; /* Add some padding inside the list */
+  background-color: #0079CD; /* Set the background color to blue */
+  border-radius: 10px; /* Round the corners of the list */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Add a drop shadow */
+}
+
+.container-title {
+  font-size: 24px; /* Increase the font size */
+  font-weight: bold; /* Make the text bold */
+  color: #000000; /* Set the text color to a dark gray */
+  margin-bottom: 10px; /* Add some space below the title */
+  margin-top: -10px;
+  text-align: center; /* Center the text horizontally */
+  display: flex;
+  justify-content: center; /* Center the text vertically */
+  align-items: center;
+
+}
+
+.tile-container{
+  background-color: #0079CD; /* Set the background color to blue */
+  padding: 20px; /* Add some padding inside the container */
+  font-size: 16px; /* Set the font size */
+  font-weight: bold; /* Make the text bold */
+  margin-top: -40px;
+  
 }

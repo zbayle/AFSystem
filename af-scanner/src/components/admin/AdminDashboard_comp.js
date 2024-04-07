@@ -1,4 +1,5 @@
 import React from 'react';
+import InventoryList from './inventoryList_comp';
 import { AuthContext } from '../Auth_comp'; // Import AuthContext
 
 class AdminDashboard extends React.Component {
@@ -19,7 +20,7 @@ class AdminDashboard extends React.Component {
             return (
               <div>
                 <h1>Admin Dashboard</h1>
-                {/* Rest of your dashboard components go here */}
+                <InventoryList/>
               </div>
             );
           } else {

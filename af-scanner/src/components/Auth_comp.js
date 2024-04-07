@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
 
   
   useEffect(() => {
-    // console.log('AuthProvider mounted');
+
 
     // Check localStorage for token on mount
     const storedToken = localStorage.getItem('token');
@@ -54,6 +54,7 @@ const AuthProvider = ({ children }) => {
       
       // Store token localStorage
       localStorage.setItem('token', userData.token);
+      localStorage.setItem('user', JSON.stringify(userData.usename));
   
       setToken(userData.token);
       setIsAuthenticated(true);

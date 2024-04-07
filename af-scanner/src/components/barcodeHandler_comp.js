@@ -3,10 +3,10 @@
 import {jwtDecode} from 'jwt-decode';
 import { fetchProduct } from '../services/scanProduct_api';
 import logScanActivity from '../services/logScanerActivity_api';
-import { updateUnitsOnHand } from '../components/Scanner_comp';
+import { updateUnitsOnHand } from './updateUnitsOnHand_comp';
 
-export async function handleBarcode(barcode, token, setProductData, setScannedItems) {
-  console.log('handleBarcode called');
+export async function handleBarcode(barcode, token, setProductData, setScannedItems, scannedItem, newItem) {
+
   let product = await fetchProduct(barcode);
   if (!token || typeof token !== 'string') {
     console.error('Invalid JWT token');
@@ -24,12 +24,17 @@ export async function handleBarcode(barcode, token, setProductData, setScannedIt
     console.error('Invalid product._id or userId', product._id, userId);
   }
   try {
-    const updatedProduct = await updateUnitsOnHand(product._id, product.unitsOnHand - 1);
-    product = updatedProduct;
-    setProductData(product);
+    const updatedProduct = await updateUnitsOnHand(product._id, product.unitsOnHand);
+    product = updatedProduct.product;
+    //setProductData(product);
 
     // Add the new scanned item to the scannedItems array
-    setScannedItems(prevItems => [...prevItems, product]);
+    // Add a timestamp to the scanned item
+    const newItem = {
+      ...scannedItem,
+      timestamp: new Date(),
+    };
+    setScannedItems(prevItems => [...prevItems, {...product, newItem}]); //changes product for newItem
   } catch (error) {
     console.error("Error updating product:", error);
   }
