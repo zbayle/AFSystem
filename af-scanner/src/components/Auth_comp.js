@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (isAuthenticated && role !== 'guest' && token) {
+    if (isAuthenticated && role !== 'guest' && token) { 
       fetchRoleDetails(role, token)
         .then(roleDetails => {
           setPerms(roleDetails.perms[0]);

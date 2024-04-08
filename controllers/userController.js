@@ -87,4 +87,31 @@ const getUserProfile = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser, getUserProfile };
+// Controller function to get user profile by ID
+const getUserProfileById = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const userProfile = await User.findById(userId);
+    if (!userProfile) {
+      return res.status(404).json({ message: 'User profile not found' });
+    }
+    res.status(200).json({ userProfile });
+  } catch (error) {
+    console.error('Error retrieving user profile by ID:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
+// Controller function to get all user profiles
+const getAllUserProfiles = async (req, res) => {
+  try {
+    const users = await User.find({});
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching user profiles' });
+  }
+};
+
+module.exports = { registerUser, loginUser, getUserProfile, getAllUserProfiles,getUserProfileById };

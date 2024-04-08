@@ -35,7 +35,28 @@ const getProductByBarcode = async (req, res) => {
 };
 
 
+//Controller function to handle retrieving a product by id
+const getProductById = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      return res.status(400).json({ message: 'No product ID provided' });
+    }
 
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    res.json(product);
+  } catch (error) {
+    console.error('Error retrieving product:', error);
+    if (error instanceof mongoose.Error.CastError && error.kind === 'ObjectId') {
+      return res.status(400).json({ message: 'Invalid product ID format' });
+    }
+    res.status(500).json({ message: error.message });
+  }
+};
 
 
 // Controller function to handle creating a new product
@@ -115,5 +136,6 @@ module.exports = {
   getProductByBarcode,
   createProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  getProductById,
 };
