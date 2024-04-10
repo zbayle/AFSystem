@@ -67,7 +67,7 @@ function ProfilesDialog({ open, onClose }) {
         <DialogTitle>Create User</DialogTitle>
         <DialogContent>
           <Formik
-            initialValues={{ username: '', email: '', password: '', role: '' }}
+            initialValues={{ username: '', email: '', password: '', role: '', fob: ''}}
             onSubmit={(values, { setSubmitting }) => {
               createUser(values, token)
                 .then(data => {
@@ -85,6 +85,7 @@ function ProfilesDialog({ open, onClose }) {
               <Field type="text" name="username" placeholder="Username" />
               <Field type="email" name="email" placeholder="Email" />
               <Field type="password" name="password" placeholder="Password" />
+              <Field type="text" name="fob" placeholder="FOB" />
               <Field as="select" name="role">
                 <option value="">Select a role</option>
                 {roles.map(role => (
