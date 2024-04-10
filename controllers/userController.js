@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 // Controller function to handle user registration
 const registerUser = async (req, res) => {
   try {
-    const { username, email, password, role } = req.body;
+    const { username, email, password, role, fob } = req.body;
 
     // Check if the user already exists
     let existingUser = await User.findOne({ $or: [{ username }, { email }] });
@@ -21,7 +21,8 @@ const registerUser = async (req, res) => {
       username,
       email,
       password: hashedPassword,
-      role
+      role,
+      fob
     });
 
     // Save the user to the database
@@ -39,8 +40,14 @@ const loginUser = async (req, res) => {
   try {
     const { username, password } = req.body;
 
+    let user; // Define user here
+
     // Find the user by username
-    const user = await User.findOne({ username });
+    try {
+      user = await User.findOne({ username });
+    } catch (error) {
+      // Handle error if needed
+    }
 
     // Check if the user exists
     if (!user) {
@@ -63,6 +70,30 @@ const loginUser = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+
+//User FOB login
+const fobLogin = async (req, res) => {
+  const { fob } = req.body;
+
+  try {
+    const user = await User.findOne({ fob });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    return res.json({ token, userId: user._id });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
 
 // Controller function to handle retrieving user profile
 const getUserProfile = async (req, res) => {
@@ -114,4 +145,4 @@ const getAllUserProfiles = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser, getUserProfile, getAllUserProfiles,getUserProfileById };
+module.exports = { registerUser, loginUser,fobLogin, getUserProfile, getAllUserProfiles,getUserProfileById };

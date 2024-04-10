@@ -100,13 +100,14 @@ body {
 }
 
 .tile {
+  width: 200px; /* Set the width of the tile */
+  height: 450px; /* Set the height of the tile */
   flex: 0 0 20%; /* Grow and shrink equally, base width of 20% */
   margin: 1%; /* Add a little margin for spacing */
   border: 1px solid rgba(0, 0, 0, 0.5); /* Add a faint border */
   border-radius: 10px; /* Round the corners of the border */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1); /* Add a drop shadow */
   padding: 20px; /* Add some padding inside the tile */
-  margin: 10px; /* Add some margin around the tile */
   background-color: #FFFFFF; /* Set the background color to white */
   overflow: auto;
   word-wrap: break-word;
@@ -224,4 +225,10 @@ body {
 .submitButton {
   align-self: flex-end;
   margin-top: 1rem;
+}
+
+.hidden-input,
+.hidden-submit {
+  position: absolute;
+  left: -9999px;
 }

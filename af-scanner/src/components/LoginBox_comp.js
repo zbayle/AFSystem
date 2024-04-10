@@ -1,12 +1,31 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef, useLayoutEffect } from 'react';
 import { AuthContext } from '../components/Auth_comp';
 
 function LoginBox() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useContext(AuthContext); // Only need login from AuthContext
+  const [fobKey, setFobKey] = useState('');
+  const [isLoginFormVisible, setIsLoginFormVisible] = useState(false);
+  const { login, fobLogin, isLoggedIn } = useContext(AuthContext);
+  const fobInputRef = useRef(null);
 
-  const handleSubmit = async (event) => {
+  const handleFobSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      await fobLogin(fobKey);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleFobKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleFobSubmit(event);
+    }
+  };
+
+  const handleLoginSubmit = async (event) => {
     event.preventDefault();
 
     try {
@@ -16,9 +35,29 @@ function LoginBox() {
     }
   };
 
+  useLayoutEffect(() => {
+    if (!isLoggedIn) {
+      // Focus the FOB input field when the user is not logged in
+      fobInputRef.current.focus();
+    }
+  }, [isLoggedIn]);
+
   return (
     <div className="login-box">
-      <form onSubmit={handleSubmit}> 
+      <form onSubmit={handleFobSubmit}> 
+        <label>
+          <input 
+            type="text" 
+            onChange={e => setFobKey(e.target.value)}
+            onKeyDown={handleFobKeyPress}
+            ref={fobInputRef}
+            className="hidden-input"
+          />
+        </label>
+        <input type="submit" className="hidden-submit" />
+      </form>
+      {isLoginFormVisible && (
+      <form onSubmit={handleLoginSubmit}>
         <label>
           Username:
           <input type="text" name="username" required onChange={e => setUsername(e.target.value)} />
@@ -29,8 +68,9 @@ function LoginBox() {
         </label>
         <input type="submit" value="Login" />
       </form>
+      )}
     </div>
   );
 }
 
-export default LoginBox; 
+export default LoginBox;

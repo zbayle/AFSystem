@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { loginUser } from '../services/login_api';
+import { loginUser, fobLogin } from '../services/login_api';
 import { getUserProfile } from '../services/getProfile_api';
 import { fetchRoleDetails } from '../services/perms_api';
 
@@ -15,10 +15,7 @@ const AuthProvider = ({ children }) => {
   const [roleDetails, setRoleDetails] = useState(null);
   const [userId, setUserId] = useState(null);
 
-  
   useEffect(() => {
-
-
     // Check localStorage for token on mount
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
@@ -54,7 +51,7 @@ const AuthProvider = ({ children }) => {
       
       // Store token localStorage
       localStorage.setItem('token', userData.token);
-      localStorage.setItem('user', JSON.stringify(userData.usename));
+      localStorage.setItem('user', JSON.stringify(userData.username));
   
       setToken(userData.token);
       setIsAuthenticated(true);
@@ -64,6 +61,29 @@ const AuthProvider = ({ children }) => {
       setRole(userProfile.role);
       setUserId(userProfile._id);
 
+      const roleDetails = await fetchRoleDetails(userProfile.role, userData.token);
+      setPerms(roleDetails.perms[0]);
+      setRoleDetails(roleDetails);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fobLoginFunc = async (fobKey) => {
+    try {
+      const userData = await fobLogin(fobKey);
+      
+      // Store token in localStorage
+      localStorage.setItem('token', userData.token);
+      localStorage.setItem('user', JSON.stringify(userData.username));
+  
+      setToken(userData.token);
+      setIsAuthenticated(true);
+  
+      const userProfile = await getUserProfile(userData.token);
+      setUsername(userProfile.username);
+      setRole(userProfile.role);
+      setUserId(userProfile._id);
 
       const roleDetails = await fetchRoleDetails(userProfile.role, userData.token);
       setPerms(roleDetails.perms[0]);
@@ -88,9 +108,10 @@ const AuthProvider = ({ children }) => {
   const authContextValue = {
     isAuthenticated,
     login,
+    fobLogin: fobLoginFunc, // Add fobLogin to the context value
     logout,
     token,
-    user: isAuthenticated ? { _id: userId,username, role, perms, roleDetails } : null,
+    user: isAuthenticated ? { _id: userId, username, role, perms, roleDetails } : null,
   };
 
   return (
