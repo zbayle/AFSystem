@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useLayoutEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef, useLayoutEffect } from 'react';
 import { AuthContext } from '../components/Auth_comp';
 
 function LoginBox() {
@@ -6,7 +6,7 @@ function LoginBox() {
   const [password, setPassword] = useState('');
   const [fobKey, setFobKey] = useState('');
   const [isLoginFormVisible, setIsLoginFormVisible] = useState(false);
-  const { login, fobLogin, isLoggedIn } = useContext(AuthContext);
+  const { login, fobLogin, isAuthenticated } = useContext(AuthContext);
   const fobInputRef = useRef(null);
 
   const handleFobSubmit = async (event) => {
@@ -35,12 +35,30 @@ function LoginBox() {
     }
   };
 
+  useEffect(() => {
+    const handleFocus = () => {
+      if (!isAuthenticated && fobInputRef.current instanceof HTMLElement) {
+        fobInputRef.current.focus();
+        console.log("focus on fob input");
+      }
+    };
+  
+    window.addEventListener('focus', handleFocus);
+    document.addEventListener('click', handleFocus);
+  
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+      document.removeEventListener('click', handleFocus);
+    };
+  }, [isAuthenticated]);
+
   useLayoutEffect(() => {
-    if (!isLoggedIn) {
+    if (!isAuthenticated) {
       // Focus the FOB input field when the user is not logged in
       fobInputRef.current.focus();
+      console.log("focus on fob input")
     }
-  }, [isLoggedIn]);
+  }, [isAuthenticated]);
 
   return (
     <div className="login-box">
