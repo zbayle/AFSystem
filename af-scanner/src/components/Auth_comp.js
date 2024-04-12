@@ -3,7 +3,7 @@ import { loginUser, fobLogin } from '../services/login_api';
 import { getUserProfile } from '../services/getProfile_api';
 import { fetchRoleDetails } from '../services/perms_api';
 
-export const AuthContext = React.createContext();
+export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -21,21 +21,37 @@ const AuthProvider = ({ children }) => {
     setLogoutTimer(setTimeout(logout, 300000)); // 300000 ms = 5 minutes
   };
 
+  const logout = () => {
+    setUsername('');
+    setRole('guest');
+    setToken(null);
+    setIsAuthenticated(false);
+    setPerms({ dashBoardAccess: false });
+    setRoleDetails(null);
+    clearTimeout(logoutTimer); // Clear the logout timer
+
+    // Remove token from localStorage
+    localStorage.removeItem('token');
+  };
 
   useEffect(() => {
-    // Check localStorage for token on mount
+    window.addEventListener('mousemove', resetTimer);
+    window.addEventListener('keydown', resetTimer);
+
+    return () => {
+      window.removeEventListener('mousemove', resetTimer);
+      window.removeEventListener('keydown', resetTimer);
+    };
+  }, []);
+
+  useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
       setToken(storedToken);
       setIsAuthenticated(true);
+      resetTimer(); // Reset the logout timer when the user is authenticated
     }
-
-    return () => {
-      // console.log('AuthProvider unmounted');
-    };
   }, []);
-
-
 
   useEffect(() => {
     if (isAuthenticated && role !== 'guest' && token) { 
@@ -58,12 +74,12 @@ const AuthProvider = ({ children }) => {
     try {
       const userData = await loginUser(username, password);
       
-      // Store token localStorage
       localStorage.setItem('token', userData.token);
       localStorage.setItem('user', JSON.stringify(userData.username));
   
       setToken(userData.token);
       setIsAuthenticated(true);
+      resetTimer(); // Reset the logout timer when the user logs in
   
       const userProfile = await getUserProfile(userData.token);
       setUsername(userProfile.username);
@@ -82,12 +98,12 @@ const AuthProvider = ({ children }) => {
     try {
       const userData = await fobLogin(fobKey);
       
-      // Store token in localStorage
       localStorage.setItem('token', userData.token);
       localStorage.setItem('user', JSON.stringify(userData.username));
   
       setToken(userData.token);
       setIsAuthenticated(true);
+      resetTimer(); // Reset the logout timer when the user logs in
   
       const userProfile = await getUserProfile(userData.token);
       setUsername(userProfile.username);
@@ -102,23 +118,12 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
-    setUsername('');
-    setRole('guest');
-    setToken(null);
-    setIsAuthenticated(false);
-    setPerms({ dashBoardAccess: false });
-    setRoleDetails(null);
-
-    // Remove token from localStorage
-    localStorage.removeItem('token');
-  };
-
   const authContextValue = {
     isAuthenticated,
     login,
-    fobLogin: fobLoginFunc, // Add fobLogin to the context value
+    fobLogin: fobLoginFunc,
     logout,
+    logoutTimer,
     token,
     user: isAuthenticated ? { _id: userId, username, role, perms, roleDetails } : null,
   };
