@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "build-localhost": "set PUBLIC_URL=/ && react-scripts build"
   },
   "keywords": [
     "zbsites"
