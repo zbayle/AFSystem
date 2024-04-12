@@ -14,6 +14,13 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [roleDetails, setRoleDetails] = useState(null);
   const [userId, setUserId] = useState(null);
+  const [logoutTimer, setLogoutTimer] = useState(null);
+
+  const resetTimer = () => {
+    clearTimeout(logoutTimer);
+    setLogoutTimer(setTimeout(logout, 300000)); // 300000 ms = 5 minutes
+  };
+
 
   useEffect(() => {
     // Check localStorage for token on mount
@@ -27,6 +34,8 @@ const AuthProvider = ({ children }) => {
       // console.log('AuthProvider unmounted');
     };
   }, []);
+
+
 
   useEffect(() => {
     if (isAuthenticated && role !== 'guest' && token) { 
