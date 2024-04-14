@@ -1,9 +1,9 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useRef } from 'react';
 import { loginUser, fobLogin } from '../services/login_api';
 import { getUserProfile } from '../services/getProfile_api';
 import { fetchRoleDetails } from '../services/perms_api';
 
-export const AuthContext = React.createContext();
+export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -14,19 +14,58 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [roleDetails, setRoleDetails] = useState(null);
   const [userId, setUserId] = useState(null);
+  const inactivityTimer = useRef(null);
+  const techTimer = useRef(null);
+
+  const resetInactivityTimer = () => {
+    clearTimeout(inactivityTimer.current);
+    inactivityTimer.current = setTimeout(startTechTimer, 30000); // 30000 ms = 30 seconds
+  };
+
+  const startTechTimer = () => {
+    if (isAuthenticated && role === 'Tech' && !techTimer.current) {
+      techTimer.current = setTimeout(logout, 60000); // 10000 ms = 80 seconds
+    }
+  };
+
+  const logout = () => {
+    setUsername('');
+    setRole('guest');
+    setToken(null);
+    setIsAuthenticated(false);
+    setPerms({ dashBoardAccess: false });
+    setRoleDetails(null);
+    clearTimeout(techTimer); // Clear the tech timer
+    clearTimeout(inactivityTimer); // Clear the inactivity timer
+    techTimer.current = null;
+
+    // Remove token from localStorage
+    localStorage.removeItem('token');
+  };
 
   useEffect(() => {
-    // Check localStorage for token on mount
+    window.addEventListener('mousemove', resetInactivityTimer);
+    window.addEventListener('keydown', resetInactivityTimer);
+
+    return () => {
+      window.removeEventListener('mousemove', resetInactivityTimer);
+      window.removeEventListener('keydown', resetInactivityTimer);
+    };
+  }, []);
+
+  useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
       setToken(storedToken);
       setIsAuthenticated(true);
+      resetInactivityTimer(); // Reset the inactivity timer
     }
-
-    return () => {
-      // console.log('AuthProvider unmounted');
-    };
   }, []);
+  useEffect(() => {
+    if (isAuthenticated && role === 'Tech') {
+      startTechTimer();
+    }
+  }, [isAuthenticated, role]);
 
   useEffect(() => {
     if (isAuthenticated && role !== 'guest' && token) { 
@@ -49,12 +88,12 @@ const AuthProvider = ({ children }) => {
     try {
       const userData = await loginUser(username, password);
       
-      // Store token localStorage
       localStorage.setItem('token', userData.token);
       localStorage.setItem('user', JSON.stringify(userData.username));
   
       setToken(userData.token);
       setIsAuthenticated(true);
+      resetInactivityTimer(); // Reset the logout timer when the user logs in
   
       const userProfile = await getUserProfile(userData.token);
       setUsername(userProfile.username);
@@ -73,12 +112,12 @@ const AuthProvider = ({ children }) => {
     try {
       const userData = await fobLogin(fobKey);
       
-      // Store token in localStorage
       localStorage.setItem('token', userData.token);
       localStorage.setItem('user', JSON.stringify(userData.username));
   
       setToken(userData.token);
       setIsAuthenticated(true);
+      resetInactivityTimer(); // Reset the logout timer when the user logs in
   
       const userProfile = await getUserProfile(userData.token);
       setUsername(userProfile.username);
@@ -93,22 +132,10 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
-    setUsername('');
-    setRole('guest');
-    setToken(null);
-    setIsAuthenticated(false);
-    setPerms({ dashBoardAccess: false });
-    setRoleDetails(null);
-
-    // Remove token from localStorage
-    localStorage.removeItem('token');
-  };
-
   const authContextValue = {
     isAuthenticated,
     login,
-    fobLogin: fobLoginFunc, // Add fobLogin to the context value
+    fobLogin: fobLoginFunc,
     logout,
     token,
     user: isAuthenticated ? { _id: userId, username, role, perms, roleDetails } : null,

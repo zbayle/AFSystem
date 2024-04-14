@@ -145,4 +145,15 @@ const getAllUserProfiles = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser,fobLogin, getUserProfile, getAllUserProfiles,getUserProfileById };
+// Service function to fetch all users
+const fetchAllUsers = async () => {
+  try {
+    const users = await User.find({});
+    return users;
+  } catch (error) {
+    console.error('Error fetching user profiles', error);
+    return [];
+  }
+};
+
+module.exports = { registerUser, loginUser,fobLogin, getUserProfile, getAllUserProfiles,getUserProfileById, fetchAllUsers };

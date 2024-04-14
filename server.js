@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const emailRoutes = require('./routes/emailRoutes');
 require('dotenv').config();
 
 // Import routes
@@ -32,6 +33,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/perms', PermsRoutes);
 app.use('/api/', scanRecord);
+app.use('/api/emails', emailRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
