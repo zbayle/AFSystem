@@ -37,7 +37,7 @@ function LoginBox() {
 
   useEffect(() => {
     const handleFocus = () => {
-      if (!isAuthenticated && fobInputRef.current instanceof HTMLElement) {
+      if (!isAuthenticated && !isLoginFormVisible && fobInputRef.current instanceof HTMLElement) {
         fobInputRef.current.focus();
         console.log("focus on fob input");
       }
@@ -50,7 +50,32 @@ function LoginBox() {
       window.removeEventListener('focus', handleFocus);
       document.removeEventListener('click', handleFocus);
     };
-  }, [isAuthenticated]);
+  }, [isAuthenticated, isLoginFormVisible]);
+
+  useEffect(() => {
+    const keySequence = ['ArrowUp', 'ArrowDown', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'a', 'b', ' '];
+    let keyIndex = 0;
+  
+    const keydownHandler = (event) => {
+      if (event.key === keySequence[keyIndex]) {
+        keyIndex++;
+        console.log(keyIndex);
+      } else {
+        keyIndex = 0;
+      }
+  
+      if (keyIndex === keySequence.length) {
+        setIsLoginFormVisible(true);
+        keyIndex = 0;
+      }
+    };
+  
+    window.addEventListener('keydown', keydownHandler);
+  
+    return () => {
+      window.removeEventListener('keydown', keydownHandler);
+    };
+  }, []);
 
   useLayoutEffect(() => {
     if (!isAuthenticated) {

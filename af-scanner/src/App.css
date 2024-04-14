@@ -100,20 +100,25 @@ body {
 }
 
 .tile {
-  width: 200px; /* Set the width of the tile */
-  height: 450px; /* Set the height of the tile */
-  flex: 0 0 20%; /* Grow and shrink equally, base width of 20% */
-  margin: 1%; /* Add a little margin for spacing */
+  width: 110px; /* Set the width of the tile */
+  height: 260px; /* Set the height of the tile */
+  margin: 20px; /* Add a little margin for spacing */
   border: 1px solid rgba(0, 0, 0, 0.5); /* Add a faint border */
   border-radius: 10px; /* Round the corners of the border */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1); /* Add a drop shadow */
-  padding: 20px; /* Add some padding inside the tile */
+  padding: 1px; /* Add some padding inside the tile */
   background-color: #FFFFFF; /* Set the background color to white */
   overflow: auto;
   word-wrap: break-word;
-  min-height: 300px;
   text-align: center;
 }
+
+.inventory_tile{
+  width: auto; /* Set the width of the tile */
+  height: auto; /* Set the height of the tile */
+}
+
+
 .barcode-container {
   display: flex;
   justify-content: center;

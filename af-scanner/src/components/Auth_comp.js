@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useRef } from 'react';
 import { loginUser, fobLogin } from '../services/login_api';
 import { getUserProfile } from '../services/getProfile_api';
 import { fetchRoleDetails } from '../services/perms_api';
@@ -14,11 +14,18 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [roleDetails, setRoleDetails] = useState(null);
   const [userId, setUserId] = useState(null);
-  const [logoutTimer, setLogoutTimer] = useState(null);
+  const inactivityTimer = useRef(null);
+  const techTimer = useRef(null);
 
-  const resetTimer = () => {
-    clearTimeout(logoutTimer);
-    setLogoutTimer(setTimeout(logout, 300000)); // 300000 ms = 5 minutes
+  const resetInactivityTimer = () => {
+    clearTimeout(inactivityTimer.current);
+    inactivityTimer.current = setTimeout(startTechTimer, 30000); // 30000 ms = 30 seconds
+  };
+
+  const startTechTimer = () => {
+    if (isAuthenticated && role === 'Tech' && !techTimer.current) {
+      techTimer.current = setTimeout(logout, 60000); // 10000 ms = 80 seconds
+    }
   };
 
   const logout = () => {
@@ -28,19 +35,21 @@ const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
     setPerms({ dashBoardAccess: false });
     setRoleDetails(null);
-    clearTimeout(logoutTimer); // Clear the logout timer
+    clearTimeout(techTimer); // Clear the tech timer
+    clearTimeout(inactivityTimer); // Clear the inactivity timer
+    techTimer.current = null;
 
     // Remove token from localStorage
     localStorage.removeItem('token');
   };
 
   useEffect(() => {
-    window.addEventListener('mousemove', resetTimer);
-    window.addEventListener('keydown', resetTimer);
+    window.addEventListener('mousemove', resetInactivityTimer);
+    window.addEventListener('keydown', resetInactivityTimer);
 
     return () => {
-      window.removeEventListener('mousemove', resetTimer);
-      window.removeEventListener('keydown', resetTimer);
+      window.removeEventListener('mousemove', resetInactivityTimer);
+      window.removeEventListener('keydown', resetInactivityTimer);
     };
   }, []);
 
@@ -49,9 +58,14 @@ const AuthProvider = ({ children }) => {
     if (storedToken) {
       setToken(storedToken);
       setIsAuthenticated(true);
-      resetTimer(); // Reset the logout timer when the user is authenticated
+      resetInactivityTimer(); // Reset the inactivity timer
     }
   }, []);
+  useEffect(() => {
+    if (isAuthenticated && role === 'Tech') {
+      startTechTimer();
+    }
+  }, [isAuthenticated, role]);
 
   useEffect(() => {
     if (isAuthenticated && role !== 'guest' && token) { 
@@ -79,7 +93,7 @@ const AuthProvider = ({ children }) => {
   
       setToken(userData.token);
       setIsAuthenticated(true);
-      resetTimer(); // Reset the logout timer when the user logs in
+      resetInactivityTimer(); // Reset the logout timer when the user logs in
   
       const userProfile = await getUserProfile(userData.token);
       setUsername(userProfile.username);
@@ -103,7 +117,7 @@ const AuthProvider = ({ children }) => {
   
       setToken(userData.token);
       setIsAuthenticated(true);
-      resetTimer(); // Reset the logout timer when the user logs in
+      resetInactivityTimer(); // Reset the logout timer when the user logs in
   
       const userProfile = await getUserProfile(userData.token);
       setUsername(userProfile.username);
@@ -123,7 +137,6 @@ const AuthProvider = ({ children }) => {
     login,
     fobLogin: fobLoginFunc,
     logout,
-    logoutTimer,
     token,
     user: isAuthenticated ? { _id: userId, username, role, perms, roleDetails } : null,
   };
