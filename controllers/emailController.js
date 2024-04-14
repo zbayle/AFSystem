@@ -1,57 +1,52 @@
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 const { fetchAllUsers } = require('./userController');
-
-// Define your email transporter
-let transporter = nodemailer.createTransport({
-  host: 'smpt.mail.airfiber.cc',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-});
+const { generateInventoryReport } = require('../services/InventoryReport.service'); // Import the generateInventoryReport function
+const fs = require('fs');
 
 exports.sendEmails = async (req, res) => {
-    // Fetch all users from your database
-    const users = await fetchAllUsers();
-  
-    // Create an array to store all the sendMail promises
-    let sendEmailPromises = [];
-  
-    // Loop through the users and send them an email if they are an admin
-    for (let user of users) {
-      if (user.role === 'Admin') {
-        let mailOptions = {
-          from: process.env.EMAIL_USER,
-          to: user.email,
-          subject: 'Email Subject',
-          text: 'Email Body'
-        };
-  
-        // Add the sendMail promise to the array
-        sendEmailPromises.push(new Promise((resolve, reject) => {
-          transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-              console.error("Error sending email: ", error);
-              reject(error);
-            } else {
-              console.log("Email sent: ", info.response);
-              resolve(info.response);
-            }
-          });
-        }));
-      }
-    }
-  
-    // Wait for all the sendMail promises to resolve
-    Promise.all(sendEmailPromises)
-      .then((results) => {
-        // All emails have been sent successfully
-        res.json({ message: 'Emails sent', results });
-      })
-      .catch((error) => {
-        // An error occurred while sending the emails
-        res.status(500).json({ message: 'Error sending emails', error });
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+  try {
+    const users = await fetchAllUsers(); // Fetch all users
+    const developers = users.filter(user => user.role === 'Developer' || user.role === 'Admin'); // Filter out developers
+
+    const report = await generateInventoryReport(); // Generate the inventory report
+
+    // Prepare the email
+    const msg = {
+      from: 'zack@airfiber.cc', // Change to your verified sender
+      subject: 'AirFiber Inventory Management System - New Feature Testing',
+      text: 'If you are seeing this then you are viewing plain text. Upgrade to a modern email client to view the details of this emai.',
+      html: report.htmlReport, // Use the HTML report as the email body
+    };
+
+    // Send an email to each developer
+    for (const developer of developers) {
+      msg.to = developer.email; // Set the recipient to the developer's email
+    
+      // Read the file and convert it to base64
+      const fileContent = fs.readFileSync(report.excelFilePath).toString('base64');
+
+      const date = new Date();
+      const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    
+      await sgMail.send({
+        ...msg,
+        attachments: [
+          {
+            content: fileContent,
+            filename: `InventoryReport_${dateString}.xlsx`,
+            type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            disposition: 'attachment'
+          }
+        ]
       });
-  };
+    }
+
+    console.log('Emails sent');
+    res.status(200).send('Emails sent');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error sending emails');
+  }
+};
