@@ -16,7 +16,7 @@ function AdminDashboard() {
   };
 
   function handleProfilesClose() {
-    setProfilesDialogOpen(false);
+    setProfilesDialogOpen(false); 
   }
 
   useEffect(() => {
