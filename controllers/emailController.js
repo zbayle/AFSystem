@@ -1,4 +1,4 @@
-const sgMail = require('@sendgrid/mail');
+const sgMail = require('@sendgrid/mail'); 
 const { fetchAllUsers } = require('./userController');
 const { generateInventoryReport } = require('../services/InventoryReport.service'); // Import the generateInventoryReport function
 const fs = require('fs');

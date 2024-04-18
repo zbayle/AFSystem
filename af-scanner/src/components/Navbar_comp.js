@@ -4,6 +4,7 @@ import '../App.css';
 import DialogContext from '../utils/DialogContext';
 import LoginBox from './LoginBox_comp';
 import ProductCreate from './admin/createProduct_comp';
+import BarcodePdfGenerator from './admin/barcodePdfGenerator_comp';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, IconButton } from '@mui/material';
 import { AuthContext } from '../components/Auth_comp'; // Import AuthContext 
 import ScanProductButton from '../components/CheckOutBtn_comp';
@@ -61,36 +62,12 @@ function NavigationBar() {
     <nav className="navbar">
       <div className="navbar-left">
         <p>{routeName}</p>
-        {isAuthenticated ? (
+        {isAuthenticated && location.pathname === '/admin' ? (
           <>
-        <IconButton onClick={handleOpenBarcodeDialog}>
-          <PrintOutlinedIcon />
-        </IconButton>
-
-        <Dialog
+        <BarcodePdfGenerator
         open={barcodeDialogOpen}
         onClose={handleCloseBarcodeDialog}
-      >
-        <DialogTitle>Product Barcodes</DialogTitle>
-        <DialogContent>
-          {products.map((product, index) => (
-            <div key={product._id + '-' + index} className="tile inventory_tile">
-              <h3 className="product-name">{product.displayName}</h3>
-              <div className='barcode-container'>
-                {product.upc !== "" && (
-                  <Barcode value={String(product.upc)} />
-                )}
-              </div>
-            </div>
-          ))}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseBarcodeDialog} color="primary">
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
-
+        />
         </>
         ):(null)}
       </div>

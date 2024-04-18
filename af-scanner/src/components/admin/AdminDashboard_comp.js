@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import InventoryList from './inventoryList_comp';
-import { AuthContext } from '../Auth_comp'; // Import AuthContext
+import { AuthContext } from '../Auth_comp'; 
 import DialogContext from '../../utils/DialogContext';
 import ProductCreate from './createProduct_comp';
 import ProfilesDialog from './ProfilesDialog_comp';
