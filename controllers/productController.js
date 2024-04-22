@@ -39,7 +39,7 @@ const getProductByBarcode = async (req, res) => {
 const getProductById = async (req, res) => {
   try {
     if (!req.params.id) {
-      return res.status(400).json({ message: 'No product ID provided' });
+      return res.status(400).json({ message: 'No product ID provided' }); 
     }
 
     const product = await Product.findById(req.params.id);

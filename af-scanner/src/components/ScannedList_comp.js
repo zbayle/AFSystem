@@ -46,7 +46,7 @@ function ScannedList({ items }) {
     <div className='scanned-list'>
       <h2 className='container-title'>Recently Scanned Items</h2>
       <div className="tile-container">
-        {items.map((item, index) => {
+        {[...items].reverse().map((item, index) => {
           if (!item) {
             return null; // Skip this iteration if item is undefined
           }

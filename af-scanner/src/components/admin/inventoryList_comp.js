@@ -4,7 +4,8 @@ import Barcode from 'react-barcode';
 import fetchAllProducts from '../../services/fetchAllProducts_api';
 import updateProductOnHand from '../../services/updateProduct_api';
 import UpdateProductForm from './updateProductOnHand_comp';
-import deleteProduct from '../../services/deleteProduct_api'; // Import the deleteProduct function
+import deleteProduct from '../../services/deleteProduct_api';
+import BarcodePdfGenerator from './barcodePdfGenerator_comp';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, IconButton } from '@mui/material';
 import { TextField } from '@mui/material';
 import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
@@ -12,12 +13,15 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import { Formik, Field, Form } from 'formik';
 
+
+
 const InventoryList = () => {
+
   const [products, setProducts] = useState([]);
   const [open, setOpen] = useState(false);
   const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [unitsToAdd, setUnitsToAdd] = useState(0);
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false); // State for the delete confirmation dialog
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const fetchProducts = async () => {
@@ -33,7 +37,7 @@ const InventoryList = () => {
   const handleAddUnits = async () => {
     // Convert unitsToAdd to a number and add it to the product
     const updatedUnitsOnHand = selectedProduct.unitsOnHand + Number(unitsToAdd);
-  
+
     // Call the API to update the product
     try {
       const updatedProduct = await updateProductOnHand(selectedProduct._id, updatedUnitsOnHand);
@@ -45,7 +49,7 @@ const InventoryList = () => {
     } catch (error) {
       console.error('An error occurred while updating the product:', error);
     }
-  
+
     // Close the dialog, reset unitsToAdd to 0, and fetch the products again
     setAddDialogOpen(false);
     setUnitsToAdd(0);
@@ -68,12 +72,20 @@ const InventoryList = () => {
     fetchProducts();
   };
 
+
+
   useEffect(() => {
     fetchProducts();
   }, []);
 
   return (
     <div className="inventory-list">
+      <div sx={{
+        position: 'absolute',
+        top: 0,
+        right: 0,
+      }}>
+      </div>
       {products.map((product, index) => (
         <div key={product._id + '-' + index} className="tile inventory_tile">
           <h3 className="product-name">{product.displayName}</h3>
@@ -85,7 +97,7 @@ const InventoryList = () => {
           <p className="upc">UPC: {product.upc}</p>
           <div className='barcode-container'>
             {product.upc !== "" ? (
-              <Barcode value={String(product.upc)} /> 
+              <Barcode value={String(product.upc)} />
             ) : (
               <button>Generate Barcode</button>
             )}
@@ -138,7 +150,7 @@ const InventoryList = () => {
           <Button onClick={handleAddUnits}>Add</Button>
         </DialogActions>
       </Dialog>
-      
+
     </div>
   );
 };

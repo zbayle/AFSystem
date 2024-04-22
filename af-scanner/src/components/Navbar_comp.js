@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import '../App.css';
 import DialogContext from '../utils/DialogContext';
 import LoginBox from './LoginBox_comp';
 import ProductCreate from './admin/createProduct_comp';
-import { AuthContext } from '../components/Auth_comp'; // Import AuthContext
+import BarcodePdfGenerator from './admin/barcodePdfGenerator_comp';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, IconButton } from '@mui/material';
+import { AuthContext } from '../components/Auth_comp'; // Import AuthContext 
 import ScanProductButton from '../components/CheckOutBtn_comp';
-import AirfiberLogo from "../logo.svg";
+import PrintOutlinedIcon from '@mui/icons-material/PrintOutlined';
 
 function UserSection({ user, logout }) {
   return (
@@ -31,6 +33,7 @@ function NavigationBar() {
   const navigate = useNavigate();
   const { setCreateDialogOpen } = useContext(DialogContext); 
   const { setProfilesDialogOpen } = useContext(DialogContext);
+  const [barcodeDialogOpen, setBarcodeDialogOpen] = useState(false);
   const routeName = routeNames[location.pathname] || 'Page not found';
 
   const handleAdminClick = () => {
@@ -45,12 +48,28 @@ function NavigationBar() {
   const handleProfilesClick = () => {
     setProfilesDialogOpen(true);
   }
+
+  const handleOpenBarcodeDialog = () => {
+    setBarcodeDialogOpen(true);
+  };
+
+  const handleCloseBarcodeDialog = () => {
+    setBarcodeDialogOpen(false);
+  };
   
   
   return (
     <nav className="navbar">
       <div className="navbar-left">
         <p>{routeName}</p>
+        {isAuthenticated && location.pathname === '/admin' ? (
+          <>
+        <BarcodePdfGenerator
+        open={barcodeDialogOpen}
+        onClose={handleCloseBarcodeDialog}
+        />
+        </>
+        ):(null)}
       </div>
       <div className="navbar-center">
         {isAuthenticated && <ScanProductButton user={user} />}
