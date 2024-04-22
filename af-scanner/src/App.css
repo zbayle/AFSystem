@@ -15,7 +15,7 @@ body {
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: white; 
 }
 
 .App-link {
@@ -99,14 +99,35 @@ body {
   filter: brightness(0.1);
 }
 
+
+.tile-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  white-space: nowrap;
+  background-color: #0079CD; /* Set the background color to blue */
+  padding: 20px; /* Add some padding inside the container */
+  font-size: 16px; /* Set the font size */
+  font-weight: bold; /* Make the text bold */
+  margin-top: -40px;
+  
+}
+.tile-container .tile:first-child{
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
 .tile {
-  width: 110px; /* Set the width of the tile */
+  flex: 0 0 auto;
+  flex-shrink: 0;
+  width: 150px; /* Set the width of the tile */
   height: 260px; /* Set the height of the tile */
   margin: 20px; /* Add a little margin for spacing */
   border: 1px solid rgba(0, 0, 0, 0.5); /* Add a faint border */
   border-radius: 10px; /* Round the corners of the border */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1); /* Add a drop shadow */
-  padding: 1px; /* Add some padding inside the tile */
+  padding: 8px; /* Add some padding inside the tile */
   background-color: #FFFFFF; /* Set the background color to white */
   overflow: auto;
   word-wrap: break-word;
@@ -191,14 +212,7 @@ body {
 
 }
 
-.tile-container{
-  background-color: #0079CD; /* Set the background color to blue */
-  padding: 20px; /* Add some padding inside the container */
-  font-size: 16px; /* Set the font size */
-  font-weight: bold; /* Make the text bold */
-  margin-top: -40px;
-  
-}
+
 
 
 /* Material UI */

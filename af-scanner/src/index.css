@@ -13,11 +13,11 @@ code {
 }
 
 
-.tile-container {
+/* .tile-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-}
+  justify-content: space-around; 
+} */
 
 /* .tile {
   border: 1px solid #ccc;
