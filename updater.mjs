@@ -2,7 +2,7 @@ import fs from 'fs';
 import { exec } from 'child_process';
 
 // The URL of your repository's API endpoint
-const REPO_API_URL = 'https://api.github.com/repos/zbayle/AFSystem/commits/test-auto-update';
+const REPO_API_URL = 'https://api.github.com/repos/zbayle/AFSystem/commits/main';
 
 // The path to a file where the latest commit hash will be stored
 const COMMIT_HASH_FILE = './commit_hash.txt';
