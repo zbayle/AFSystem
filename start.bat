@@ -1,3 +1,7 @@
-start cmd /k "cd C:\Users\AirFiber\Documents\GitHub\AFSystem && npm start"
-start cmd /k "cd C:\Users\AirFiber\Documents\GitHub\AFSystem\af-scanner && npm start"
-start "" "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --start-fullscreen http://localhost:3000
+node updater.mjs
+start cmd /k "cd /d %~dp0 && npm start"
+start cmd /k "cd /d %~dp0af-scanner && npm start"
+timeout /t 30 /nobreak > NUL
+for /f "delims=" %%i in ('where chrome') do set "chromePath=%%i"
+start "" "%chromePath%" --start-fullscreen http://localhost:3000
+exit

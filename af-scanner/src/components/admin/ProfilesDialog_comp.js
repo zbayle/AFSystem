@@ -61,7 +61,7 @@ function ProfilesDialog({ open, onClose }) {
         </Button>
       </DialogActions>
 
-      <UserProfileDialog open={profileDialogOpen} onClose={handleProfileDialogClose} _id={selectedProfile?._id} />
+      <UserProfileDialog open={profileDialogOpen} onClose={handleProfileDialogClose} _id={selectedProfile?._id} profileUsername={selectedProfile?.username} />
 
       <Dialog open={createUserDialogOpen} onClose={handleCreateUserDialogClose} fullWidth maxWidth="sm">
         <DialogTitle>Create User</DialogTitle>

@@ -29,8 +29,8 @@ const InventoryList = () => {
     setProducts(products);
   };
 
-  const handleAddProduct = () => {
-    if (selectedProduct) {
+  const handleAddProduct = (product) => {
+    if (product) {
       setAddDialogOpen(true);
     }
   };
@@ -102,7 +102,7 @@ const InventoryList = () => {
               <button>Generate Barcode</button>
             )}
           </div>
-          <IconButton onClick={() => { setSelectedProduct(product); handleAddProduct(); }}>
+          <IconButton onClick={() => { setSelectedProduct(product); handleAddProduct(product); }}>
             <ControlPointIcon />
           </IconButton>
           <IconButton onClick={() => handleOpen(product)}>
