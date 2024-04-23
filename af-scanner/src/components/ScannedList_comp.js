@@ -57,7 +57,7 @@ function ScannedList({ items }) {
               <p className={`units-on-hand ${item.unitsOnHand <= 0 ? 'units-on-hand-low' : ''}`}>
                 {item.unitsOnHand} Left on hand
               </p>
-              <p className='user-name'>scanned by user: {user.username}({user.role})</p>
+              <p className='user-name'>scanned by user: {user.username}</p>
               <sub className='timestamp'>{item.newItem.timestamp.toLocaleString()}</sub>
             </div>
           );

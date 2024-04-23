@@ -118,20 +118,29 @@ body {
   margin-right: 20px;
 }
 
-.tile {
-  flex: 0 0 auto;
-  flex-shrink: 0;
-  width: 150px; /* Set the width of the tile */
-  height: 260px; /* Set the height of the tile */
-  margin: 20px; /* Add a little margin for spacing */
-  border: 1px solid rgba(0, 0, 0, 0.5); /* Add a faint border */
-  border-radius: 10px; /* Round the corners of the border */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1); /* Add a drop shadow */
-  padding: 8px; /* Add some padding inside the tile */
-  background-color: #FFFFFF; /* Set the background color to white */
-  overflow: auto;
-  word-wrap: break-word;
-  text-align: center;
+@media (min-width: 768px) {
+  .tile {
+    flex: 0 0 auto;
+    flex-shrink: 0;
+    width: 150px; /* Set the width of the tile */
+    height: 260px; /* Set the height of the tile */
+    margin: 20px; /* Add a little margin for spacing */
+    border: 1px solid rgba(0, 0, 0, 0.5); /* Add a faint border */
+    border-radius: 10px; /* Round the corners of the border */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1); /* Add a drop shadow */
+    padding: 25; /* Add some padding inside the tile */ 
+    background-color: #FFFFFF; /* Set the background color to white */
+    overflow: auto;
+    word-wrap: break-word;
+    text-align: center;
+  }
+
+  #foblogo {
+    position: absolute;
+    top: 30%; /* Position it at the bottom of the h1 */
+    width: 500px; /* Adjust this to make the logo larger or smaller */
+    height: auto; /* Keep the aspect ratio of the logo */
+  }
 }
 
 .inventory_tile{
@@ -180,6 +189,7 @@ body {
 
 .scannedlist-comp {
   position: absolute;
+  height: 528.533px;
   top: 80%; /* Start from the top of the page */
   bottom: 10%; /* Stretch to the bottom of the page */
   left: 0; /* Start from the left of the page */
@@ -256,11 +266,14 @@ h1 {
   position: relative;
 }
 
-#foblogo {
-  position: absolute;
-  top: 30%; /* Position it at the bottom of the h1 */
-  width: 500px; /* Adjust this to make the logo larger or smaller */
-  height: auto; /* Keep the aspect ratio of the logo */
+
+@media (max-width: 767px) {
+  #foblogo {
+    position: absolute;
+    top: 10%; /* Position it at the bottom of the h1 */
+    width: auto; /* Adjust this to make the logo larger or smaller */
+    height: auto; /* Keep the aspect ratio of the logo */
+  }
 }
 
 @keyframes pulse {

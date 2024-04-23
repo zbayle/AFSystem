@@ -2,4 +2,6 @@
 .env
 .env
 node_modules
+*.xlsx
 .xlsx
+commit_hash.txt
