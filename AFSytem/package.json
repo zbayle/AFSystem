@@ -1,0 +1,36 @@
+{
+  "name": "zbinventory",
+  "version": "1.0.0",
+  "description": "Zbsites.com Inventory Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build": "react-scripts build",
+    "build-localhost": "set PUBLIC_URL=/ && react-scripts build"
+  },
+  "keywords": [
+    "zbsites"
+  ],
+  "author": "zbsites.com",
+  "license": "ISC",
+  "dependencies": {
+    "@mui/styles": "^5.15.15",
+    "@sendgrid/mail": "^8.1.3",
+    "@serialport/parser-readline": "^12.0.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "exceljs": "^4.4.0",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.2.0",
+    "morgan": "^1.10.0",
+    "node-fetch": "^3.3.2",
+    "nodemailer": "^6.9.13",
+    "react-scripts": "^5.0.1",
+    "serialport": "^12.0.0",
+    "serve": "^14.2.1"
+  }
+}
