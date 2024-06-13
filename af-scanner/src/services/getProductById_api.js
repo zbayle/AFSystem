@@ -1,6 +1,6 @@
 export async function getProductById(productId) {
     try {
-      const response = await fetch(`http://localhost:3001/api/products/search/${productId}`, {
+      const response = await fetch(`http://192.168.1.60:3001/api/products/search/${productId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

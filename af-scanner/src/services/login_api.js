@@ -12,7 +12,7 @@ export async function loginUser(username, password) {
   let config = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: 'http://localhost:3001/api/users/login',
+    url: 'http://192.168.1.60:3001/api/users/login',
     headers: { 
       'Content-Type': 'application/json'
     },
@@ -33,7 +33,7 @@ export async function fobLogin(fobKey) {
   let config = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: 'http://localhost:3001/api/users/foblogin',
+    url: 'http://192.168.1.60:3001/api/users/foblogin',
     headers: { 
       'Content-Type': 'application/json'
     },

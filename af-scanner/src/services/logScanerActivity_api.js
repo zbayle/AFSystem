@@ -1,6 +1,6 @@
 // logScanerActivity_api.js
 function logScanActivity(productId, techId) {
-    return fetch('http://localhost:3001/api/logScan', {
+    return fetch('http://192.168.1.60:3001/api/logScan', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

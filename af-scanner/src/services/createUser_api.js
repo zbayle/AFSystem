@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const createUser = async (userData, token, fob) => {
-  const url = 'http://localhost:3001/api/users/register';
+  const url = 'http://192.168.1.60:3001/api/users/register';
   try {
     const response = await axios.post(url, userData, fob, {
       headers: {
