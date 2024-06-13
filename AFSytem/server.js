@@ -1,9 +1,10 @@
+require('dotenv').config();
 const express = require('express'); 
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const emailRoutes = require('./routes/emailRoutes');
-require('dotenv').config();
+
 
 // Import routes
 const userRoutes = require('./routes/userRoutes');
@@ -19,7 +20,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors({
   origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
