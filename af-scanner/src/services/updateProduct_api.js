@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const updateProductOnHand = async (productId, unitsOnHand) => {
   try {
-    const response = await axios.put(`http://localhost:3001/api/products/${productId}`, {
+    const response = await axios.put(`http://192.168.1.60:3001/api/products/${productId}`, {
       unitsOnHand
     });
 
