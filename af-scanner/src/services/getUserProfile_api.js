@@ -2,7 +2,7 @@ import { AuthContext } from '../components/Auth_comp';
 
 export async function getAllUserProfiles(token) { 
   try {
-    const response = await fetch('http://localhost:3001/api/users/profile/allUsers', {
+    const response = await fetch('http://192.168.1.60:3001/api/users/profile/allUsers', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
