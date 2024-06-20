@@ -165,7 +165,7 @@ const changePassword = async (req, res) => {
     const { newPassword } = req.body;
 
     // Optional: Check if the requester is an admin or the same user to prevent unauthorized changes
-    if (!['admin', 'developer'].includes(req.user.role) && req.user._id !== userId) {
+    if (req.user.role !== 'admin' && req.user.role !== 'Developer' && req.user._id !== userId) {
       return res.status(403).json({ message: 'Insufficient permissions' });
     }
 
