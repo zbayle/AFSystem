@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, Button, TextField } from '@mui/material';
+import changePassword from '../../services/changeUserPassword_api';
 
 function PasswordChangeDialog({ open, onClose }) {
   const [newPassword, setNewPassword] = useState('');
@@ -11,28 +12,8 @@ function PasswordChangeDialog({ open, onClose }) {
     // Optional: Add validation here (e.g., check if passwords match)
 
     try {
-      const response = await fetch('http://192.168.1.60:3001/api/users/changePassword', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // Include other necessary headers, such as authorization tokens
-        },
-        body: JSON.stringify({
-          newPassword: newPassword,
-          // confirmNewPassword might not be needed by your API, but included if necessary
-          confirmNewPassword: confirmNewPassword,
-        }),
-      });
-
-      if (response.ok) {
-        // Handle success
-        console.log('Password successfully changed');
-        onClose(); // Close the dialog
-        // Optionally, reset form fields here
-      } else {
-        // Handle server-side validation errors or other issues
-        console.error('Failed to change password');
-      }
+      await changePassword(newPassword, confirmNewPassword, onClose); 
+      
     } catch (error) {
       // Handle network errors or unexpected issues
       console.error('Error changing password:', error);
