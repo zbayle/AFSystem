@@ -7,7 +7,6 @@ function PasswordChangeDialog({ open, onClose, userId }) {
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const { token } = useContext(AuthContext); // Fixed useContext usage
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -17,8 +16,7 @@ function PasswordChangeDialog({ open, onClose, userId }) {
     }
 
     try {
-      await changePasswordAPI(userId, newPassword, token); // Assuming changePassword here is correctly referring to the context's changePassword
-      onClose();
+      await changePasswordAPI(userId, newPassword,onClose, token);
     } catch (error) {
       console.error('Error changing password:', error);
     }
