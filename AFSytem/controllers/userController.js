@@ -158,6 +158,7 @@ const fetchAllUsers = async () => {
 
 // Controller function to change a user's password
 const changePassword = async (req, res) => {
+  console.log('Request body:', req.body);
   try {
     // Allow admin to change any user's password or default to the logged-in user
     const userId = req.body.userId || req.user._id;
