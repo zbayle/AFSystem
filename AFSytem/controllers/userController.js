@@ -156,4 +156,30 @@ const fetchAllUsers = async () => {
   }
 };
 
-module.exports = { registerUser, loginUser,fobLogin, getUserProfile, getAllUserProfiles,getUserProfileById, fetchAllUsers };
+// Controller function to change a user's password
+const changePassword = async (req, res) => {
+  try {
+    const userId = req.user._id; // Assuming the user ID is attached to the request by authentication middleware
+    const { oldPassword, newPassword } = req.body;
+
+    // Find the user by ID
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the user's password
+    user.password = hashedPassword;
+    await user.save();
+
+    res.json({ message: 'Password successfully changed' });
+  } catch (error) {
+    console.error('Error changing password:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports = { registerUser, loginUser,fobLogin, getUserProfile, getAllUserProfiles,getUserProfileById, fetchAllUsers, changePassword };

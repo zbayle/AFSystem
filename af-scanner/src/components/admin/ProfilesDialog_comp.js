@@ -3,7 +3,9 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, Grid, Paper, Typogra
 import { AuthContext } from '../Auth_comp';
 import { getAllUserProfiles } from '../../services/getUserProfile_api';
 import createUser from '../../services/createUser_api';
+import PasswordChangeDialog from './passwordChangeDialog_comp';
 import HowToRegOutlinedIcon from '@mui/icons-material/HowToRegOutlined';
+import PasswordIcon from '@mui/icons-material/Password';
 import { Formik, Field, Form } from 'formik';
 
 import UserProfileDialog  from './userProfileDialog_comp';
@@ -13,6 +15,7 @@ function ProfilesDialog({ open, onClose }) {
   const [selectedProfile, setSelectedProfile] = useState(null);
   const [profileDialogOpen, setProfileDialogOpen] = useState(false);
   const [createUserDialogOpen, setCreateUserDialogOpen] = useState(false);
+  const [passwordDialogOpen, setChangePasswordDialogOpen] = useState(false);
   const { token } = useContext(AuthContext);
   const roles = ['Admin', 'Tech', 'Developer'];
 
@@ -33,6 +36,15 @@ function ProfilesDialog({ open, onClose }) {
     setCreateUserDialogOpen(false);
   };
 
+  const handleChangePasswordDialogClick = (profile) => {
+    console.log('Change password for:', profile);
+    setSelectedProfile(profile);
+    setChangePasswordDialogOpen(true);
+  };
+  const handleChangePasswordDialogClose = () => {
+    setChangePasswordDialogOpen(false);
+  };
+
   useEffect(() => {
     if (open) {
       getAllUserProfiles(token).then(data => setProfiles(data));
@@ -50,6 +62,10 @@ function ProfilesDialog({ open, onClose }) {
                 <Typography variant="h6">{profile.username}</Typography>
                 <Typography variant="subtitle1">{profile.email}</Typography>
                 <Typography variant="subtitle2">{profile.role}</Typography>
+                <PasswordIcon onClick={(event) => {
+                  event.stopPropagation(); // Prevent event bubbling
+                  handleChangePasswordDialogClick(profile);
+                }} style={{ cursor: 'pointer' }} />
               </Paper>
             </Grid>
           ))}
@@ -97,6 +113,12 @@ function ProfilesDialog({ open, onClose }) {
           </Formik>
         </DialogContent> 
       </Dialog>
+
+      <PasswordChangeDialog 
+        open={passwordDialogOpen} 
+        onClose={handleChangePasswordDialogClose} 
+        profile={selectedProfile} 
+      />
     </Dialog>
   );
 }
