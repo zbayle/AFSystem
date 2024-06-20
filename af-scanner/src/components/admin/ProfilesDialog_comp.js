@@ -114,10 +114,11 @@ function ProfilesDialog({ open, onClose }) {
         </DialogContent> 
       </Dialog>
 
-      <PasswordChangeDialog 
-        open={passwordDialogOpen} 
-        onClose={handleChangePasswordDialogClose} 
-        profile={selectedProfile} 
+      <PasswordChangeDialog
+        open={passwordDialogOpen}
+        onClose={handleChangePasswordDialogClose}
+        profile={selectedProfile}
+        userId={selectedProfile?._id}
       />
     </Dialog>
   );

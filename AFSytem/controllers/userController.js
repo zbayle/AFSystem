@@ -159,8 +159,14 @@ const fetchAllUsers = async () => {
 // Controller function to change a user's password
 const changePassword = async (req, res) => {
   try {
-    const userId = req.user._id; // Assuming the user ID is attached to the request by authentication middleware
-    const { oldPassword, newPassword } = req.body;
+    // Allow admin to change any user's password or default to the logged-in user
+    const userId = req.body.userId || req.user._id;
+    const { newPassword } = req.body;
+
+    // Optional: Check if the requester is an admin or the same user to prevent unauthorized changes
+    if (req.user.role !== 'admin' && req.user._id !== userId) {
+      return res.status(403).json({ message: 'Insufficient permissions' });
+    }
 
     // Find the user by ID
     const user = await User.findById(userId);

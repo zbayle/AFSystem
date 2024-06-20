@@ -1,19 +1,20 @@
 import axios from 'axios';
 
-// Define the changePassword function with necessary parameters
-const changePassword = async (newPassword, confirmNewPassword, onClose) => {
+// Update the function signature to include userId
+const changePassword = async (userId, newPassword, onClose) => {
   try {
-    const response = await axios.post('http://192.168.1.60:3001/api/users/changePassword', {
-      newPassword,
-      confirmNewPassword,
-    }, {
+    const token = localStorage.getItem('userToken');
+    const url = 'http://192.168.1.60:3001/api/users/changePassword';
+    const body = {
+      userId,
+      newPassword
+    };
+    const response = await axios.post(url, body, {
       headers: {
-        'Content-Type': 'application/json',
-        // Include other necessary headers, such as authorization tokens
-      },
+        'Authorization': `Bearer ${token}`
+      }
     });
 
-    // Check for success status in the response
     if (response.status === 200) {
       console.log('Password successfully changed');
       onClose(); // Assuming onClose is a function to close the dialog or perform some cleanup
@@ -21,7 +22,6 @@ const changePassword = async (newPassword, confirmNewPassword, onClose) => {
       console.error('Failed to change password');
     }
   } catch (error) {
-    // Handle errors (e.g., network error, server error, etc.)
     console.error('Error changing password:', error);
   }
 };

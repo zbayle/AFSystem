@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, Button, TextField } from '@mui/material';
 import changePassword from '../../services/changeUserPassword_api';
 
-function PasswordChangeDialog({ open, onClose }) {
+function PasswordChangeDialog({ open, onClose,userId }) {
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
 
@@ -10,9 +10,13 @@ function PasswordChangeDialog({ open, onClose }) {
     event.preventDefault();
 
     // Optional: Add validation here (e.g., check if passwords match)
+    if (newPassword !== confirmNewPassword) {
+      console.error('Passwords do not match');
+      return; // Prevent the form from being submitted
+    }
 
     try {
-      await changePassword(newPassword, confirmNewPassword, onClose); 
+      await changePassword(newPassword, onClose, userId); 
       
     } catch (error) {
       // Handle network errors or unexpected issues
