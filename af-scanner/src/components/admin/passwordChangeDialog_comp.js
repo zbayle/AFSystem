@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react'; // Added useContext import
 import { Dialog, DialogTitle, DialogContent, Button, TextField } from '@mui/material';
-import changePassword from '../../services/changeUserPassword_api';
+import {changePasswordAPI } from '../../services/changeUserPassword_api'; 
+import { AuthContext } from '../../components/Auth_comp';
 
-function PasswordChangeDialog({ open, onClose,userId }) {
+function PasswordChangeDialog({ open, onClose, userId }) {
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const { token } = useContext(AuthContext); // Fixed useContext usage
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Optional: Add validation here (e.g., check if passwords match)
     if (newPassword !== confirmNewPassword) {
       console.error('Passwords do not match');
-      return; // Prevent the form from being submitted
+      return;
     }
 
     try {
-      await changePassword(newPassword, onClose, userId); 
-      
+      await changePasswordAPI(userId, newPassword, token); // Assuming changePassword here is correctly referring to the context's changePassword
+      onClose();
     } catch (error) {
-      // Handle network errors or unexpected issues
       console.error('Error changing password:', error);
     }
   };
