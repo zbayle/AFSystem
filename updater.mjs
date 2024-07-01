@@ -3,6 +3,8 @@ import { exec } from 'child_process';
 import fetch from 'node-fetch';
 import path from 'path';
 
+const __dirname = new URL('.', import.meta.url).pathname.replace(/^\/([A-Za-z]:\/)/, '$1');
+
 // The URL of your repository's API endpoint
 const REPO_API_URL = 'https://api.github.com/repos/zbayle/AFSystem';
 
@@ -16,21 +18,26 @@ const COMMIT_HASH_FILE = path.resolve(__dirname, 'commit_hash.txt');
 
 const installDependencies = (dir) => {
   return new Promise((resolve, reject) => {
-    // Check if the directory exists
-    if (fs.existsSync(dir)) {
-      exec(`cd ${dir} && npm install`, (err, stdout, stderr) => {
+    // Check if the directory exists, create it if it doesn't
+    if (!fs.existsSync(dir)) {
+      console.log(`Directory ${dir} does not exist. Creating...`);
+      fs.mkdirSync(dir, { recursive: true }, (err) => {
         if (err) {
-          console.error(`Failed to install dependencies in ${dir}:`, err);
+          console.error(`Failed to create directory ${dir}:`, err);
           reject(err);
-        } else {
-          console.log(`Dependencies installed successfully in ${dir}`);
-          resolve();
         }
       });
-    } else {
-      console.error(`Directory ${dir} does not exist.`);
-      reject(new Error(`Directory ${dir} does not exist.`));
     }
+
+    exec(`cd ${dir} && npm install`, (err, stdout, stderr) => {
+      if (err) {
+        console.error(`Failed to install dependencies in ${dir}:`, err);
+        reject(err);
+      } else {
+        console.log(`Dependencies installed successfully in ${dir}`);
+        resolve();
+      }
+    });
   });
 };
 
