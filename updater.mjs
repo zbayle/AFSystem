@@ -14,15 +14,21 @@ const COMMIT_HASH_FILE = './commit_hash.txt';
 
 const installDependencies = (dir) => {
   return new Promise((resolve, reject) => {
-    exec(`cd ${dir} && npm install`, (err, stdout, stderr) => {
-      if (err) {
-        console.error(`Failed to install dependencies in ${dir}:`, err);
-        reject(err);
-      } else {
-        console.log(`Dependencies installed successfully in ${dir}`);
-        resolve();
-      }
-    });
+    // Check if the directory exists
+    if (fs.existsSync(dir)) {
+      exec(`cd ${dir} && npm install`, (err, stdout, stderr) => {
+        if (err) {
+          console.error(`Failed to install dependencies in ${dir}:`, err);
+          reject(err);
+        } else {
+          console.log(`Dependencies installed successfully in ${dir}`);
+          resolve();
+        }
+      });
+    } else {
+      console.error(`Directory ${dir} does not exist.`);
+      reject(new Error(`Directory ${dir} does not exist.`));
+    }
   });
 };
 
