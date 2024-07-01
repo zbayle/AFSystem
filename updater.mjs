@@ -57,10 +57,11 @@ const ensureNodeFetchInstalled = () => {
 };
 
 const checkForUpdates = async () => {
+  console.log('Ensuring node-fetch is installed...');
   ensureNodeFetchInstalled();
 
+  console.log('Checking for updates...');
   try {
-    // Correct endpoint to fetch the latest commit hash
     const res = await fetch(`${REPO_API_URL}/commits?per_page=1`);
     const commits = await res.json();
     if (commits.length === 0) {
@@ -68,12 +69,12 @@ const checkForUpdates = async () => {
       return;
     }
     const latestCommitHash = commits[0].sha;
+    console.log(`Latest commit hash: ${latestCommitHash}`);
 
     fs.readFile(COMMIT_HASH_FILE, 'utf8', (err, currentCommitHash) => {
       if (err) {
         if (err.code === 'ENOENT') {
           console.log('Commit hash file not found, creating it...');
-          // Ensure latestCommitHash is defined before writing
           if (latestCommitHash) {
             fs.writeFile(COMMIT_HASH_FILE, latestCommitHash, err => {
               if (err) {
@@ -91,16 +92,14 @@ const checkForUpdates = async () => {
 
       if (latestCommitHash !== currentCommitHash) {
         console.log('Update found, pulling changes...');
-
-        exec('git pull', (err, stdout, stderr) => {
+        exec('git pull', async (err, stdout, stderr) => {
           if (err) {
             console.error('Failed to pull changes:', err);
             return;
           }
-
           console.log('Changes pulled successfully');
+          console.log(stdout);
 
-          // Ensure latestCommitHash is defined before writing
           if (latestCommitHash) {
             fs.writeFile(COMMIT_HASH_FILE, latestCommitHash, err => {
               if (err) {
@@ -111,27 +110,36 @@ const checkForUpdates = async () => {
             });
           }
 
-          // Install dependencies after pulling changes
-          Promise.all([
-            installDependencies(AFSystem_DIR),
-            installDependencies(af_scanner_DIR)
-          ]).then(() => {
+          console.log('Installing dependencies...');
+          try {
+            await Promise.all([
+              installDependencies(AFSystem_DIR),
+              installDependencies(af_scanner_DIR)
+            ]);
+            console.log('Dependencies installed successfully.');
+
+            console.log(`Starting server in ${AFSystem_DIR}...`);
             exec(`cd ${AFSystem_DIR} && npm start`, (err, stdout, stderr) => {
               if (err) {
                 console.error(`Failed to start server in ${AFSystem_DIR}:`, err);
               } else {
                 console.log(`Server started successfully in ${AFSystem_DIR}`);
+                console.log(stdout);
               }
             });
 
+            console.log(`Starting server in ${af_scanner_DIR}...`);
             exec(`cd ${af_scanner_DIR} && npm start`, (err, stdout, stderr) => {
               if (err) {
                 console.error(`Failed to start server in ${af_scanner_DIR}:`, err);
               } else {
                 console.log(`Server started successfully in ${af_scanner_DIR}`);
+                console.log(stdout);
               }
             });
-          });
+          } catch (err) {
+            console.error('An error occurred while installing dependencies or starting servers:', err);
+          }
         });
       } else {
         console.log('No updates found.');
@@ -141,5 +149,7 @@ const checkForUpdates = async () => {
     console.error('Failed to fetch latest commit:', err);
   }
 };
+
+checkForUpdates();
 
 checkForUpdates();
