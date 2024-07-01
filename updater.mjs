@@ -1,8 +1,9 @@
 import fs from 'fs';
 import { exec } from 'child_process';
+import fetch from 'node-fetch';
 
 // The URL of your repository's API endpoint
-const REPO_API_URL = 'https://api.github.com/repos/zbayle/AFSystem/commits/test-auto-update';
+const REPO_API_URL = 'https://api.github.com/repos/zbayle/AFSystem';
 
 // The paths to the directories where your Node.js server and React app live
 const AFSystem_DIR = './AFSystem';
@@ -43,21 +44,30 @@ const ensureNodeFetchInstalled = () => {
 const checkForUpdates = async () => {
   ensureNodeFetchInstalled();
 
-  const fetch = (await import('node-fetch')).default;
   try {
-    const res = await fetch(REPO_API_URL);
-    const data = await res.json();
-    const latestCommitHash = data.sha;
+    // Correct endpoint to fetch the latest commit hash
+    const res = await fetch(`${REPO_API_URL}/commits?per_page=1`);
+    const commits = await res.json();
+    if (commits.length === 0) {
+      console.error('No commits found in the repository.');
+      return;
+    }
+    const latestCommitHash = commits[0].sha;
 
     fs.readFile(COMMIT_HASH_FILE, 'utf8', (err, currentCommitHash) => {
       if (err) {
         if (err.code === 'ENOENT') {
           console.log('Commit hash file not found, creating it...');
-          fs.writeFile(COMMIT_HASH_FILE, latestCommitHash, err => {
-            if (err) {
-              console.error('Failed to create commit hash file:', err);
-            }
-          });
+          // Ensure latestCommitHash is defined before writing
+          if (latestCommitHash) {
+            fs.writeFile(COMMIT_HASH_FILE, latestCommitHash, err => {
+              if (err) {
+                console.error('Failed to create commit hash file:', err);
+              } else {
+                console.log('Commit hash file created successfully.');
+              }
+            });
+          }
         } else {
           console.error('Failed to read commit hash file:', err);
         }
@@ -75,11 +85,16 @@ const checkForUpdates = async () => {
 
           console.log('Changes pulled successfully');
 
-          fs.writeFile(COMMIT_HASH_FILE, latestCommitHash, err => {
-            if (err) {
-              console.error('Failed to write commit hash file:', err);
-            }
-          });
+          // Ensure latestCommitHash is defined before writing
+          if (latestCommitHash) {
+            fs.writeFile(COMMIT_HASH_FILE, latestCommitHash, err => {
+              if (err) {
+                console.error('Failed to write commit hash file:', err);
+              } else {
+                console.log('Commit hash file updated successfully.');
+              }
+            });
+          }
 
           // Install dependencies after pulling changes
           Promise.all([
@@ -103,6 +118,8 @@ const checkForUpdates = async () => {
             });
           });
         });
+      } else {
+        console.log('No updates found.');
       }
     });
   } catch (err) {
