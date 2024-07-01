@@ -6,11 +6,12 @@ import fetch from 'node-fetch';
 const REPO_API_URL = 'https://api.github.com/repos/zbayle/AFSystem';
 
 // The paths to the directories where your Node.js server and React app live
-const AFSystem_DIR = './AFSystem';
-const af_scanner_DIR = './af-scanner';
+// Use path.resolve to construct absolute paths
+const AFSystem_DIR = path.resolve(__dirname, 'AFSystem');
+const af_scanner_DIR = path.resolve(__dirname, 'af-scanner');
 
 // The path to a file where the latest commit hash will be stored
-const COMMIT_HASH_FILE = './commit_hash.txt';
+const COMMIT_HASH_FILE = path.resolve(__dirname, 'commit_hash.txt');
 
 const installDependencies = (dir) => {
   return new Promise((resolve, reject) => {
