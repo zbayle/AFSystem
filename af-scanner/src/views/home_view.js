@@ -8,7 +8,7 @@ const HomeView = () => {
     return (
         <div className='page_title'>
             <img src={AirfiberLogo} alt="Airfiber Logo" className="logo" />
-            <h1>Inventory Systems V2.0.1</h1>
+            <h1>Inventory Systems V2.0.2</h1>
             {!isAuthenticated && <img src={process.env.PUBLIC_URL + '/foblogo.jpg'} alt="Fob Logo" id="foblogo" />}
         </div>
     );

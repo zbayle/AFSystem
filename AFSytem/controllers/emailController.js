@@ -1,3 +1,4 @@
+//V2.0.2
 const sgMail = require('@sendgrid/mail'); 
 const { fetchAllUsers } = require('./userController');
 const { generateInventoryReport } = require('../services/InventoryReport.service'); // Import the generateInventoryReport function
