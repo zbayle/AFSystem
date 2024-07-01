@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { exec } from 'child_process';
 import fetch from 'node-fetch';
+import path from 'path';
 
 // The URL of your repository's API endpoint
 const REPO_API_URL = 'https://api.github.com/repos/zbayle/AFSystem';
